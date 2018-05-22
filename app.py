@@ -1,0 +1,42 @@
+from flask import Flask, request, abort
+import logging
+import json
+import lineJson
+import os
+
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
+
+from linebot.models import TextMessage
+
+
+app = Flask(__name__)
+
+# Channel Access Token
+line_bot_api = LineBotApi('wxTNX1jIXxlXW4bZqEkZ59PdPLrnhQCCo/qMj3EB62aJomjGqsB8rG8Bl6g4zc/YDrHnouTCGbZPINFM6oDyuE9WhnrXeB9Aqb76qiyYlaWcE/9vBXSjrbMA73XH72x+6QSGPPNlvVNcy2R4uZVzjQdB04t89/1O/w1cDnyilFU=')
+# Channel Secret
+handler = WebhookHandler('ff13f12d5bcfa432e5643dcc7a9685ca')
+
+# 監聽所有來自 /callback 的 Post Request
+@app.route("/callback", methods=['POST'])
+def callback():
+    # get X-Line-Signature header value
+    # signature = request.headers['Content-Type: application/json']
+
+    # get request body as text
+    logging.basicConfig(level=logging.INFO)
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
+    j = json.loads(body, object_hook=lineJson.as_lineJson)
+    type(j)
+    # handle webhook body
+    try:
+        line_bot_api.push_message(j.lineID, TextMessage(text=j.text))
+    except InvalidSignatureError:
+        abort(400)
+
+    return 'OK'
+
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
