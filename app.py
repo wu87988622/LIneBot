@@ -50,7 +50,8 @@ def handle_message(event):
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
-        sendMsg = ImageSendMessage(original_content_url='https://media.giphy.com/media/kaq6GnxDlJaBq/giphy.gif')
+        sendMsg = ImageSendMessage(original_content_url='https://media.giphy.com/media/kaq6GnxDlJaBq/giphy.gif',
+                                   preview_image_url='https://media.giphy.com/media/kaq6GnxDlJaBq/giphy.gif')
         line_bot_api.reply_message(event.reply_token, sendMsg)
 
 
