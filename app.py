@@ -9,6 +9,11 @@ from linebot.exceptions import InvalidSignatureError
 
 from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage, VideoSendMessage
 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+from bs4 import BeautifulSoup
+
 
 app = Flask(__name__)
 
@@ -50,11 +55,25 @@ def handle_message(event):
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
-        sendMsg = VideoSendMessage(original_content_url='https://media.giphy.com/media/kaq6GnxDlJaBq/giphy.mp4',
-                                   preview_image_url='https://media.giphy.com/media/kaq6GnxDlJaBq/giphy.gif')
+        imgUrl = get_google_image(message)
+        sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url= imgUrl)
         line_bot_api.reply_message(event.reply_token, sendMsg)
 
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
+
+def get_google_image(text):
+    url = 'https://www.google.com.tw/search?hl=zh-TW&tbm=isch&source=hp&biw=1918&bih=947&ei=mbsHW52SL8ae8QWYz4CgAg&q='+text+'&oq='+text+'&gs_l=img.3..0l3j0i10k1l2j0i30k1l5.766.3823.0.4106.6.6.0.0.0.0.98.350.6.6.0....0...1ac.1j4.64.img..0.6.349....0.WN5xu1do3tM'
+    chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+    chrome_options = Options()
+    chrome_options.binary_location = chrome_bin
+    driver = webdriver.Chrome(chrome_options=chrome_options)
+    driver.get(url)
+    html = driver.page_source
+    driver.close()
+    bfsoup = BeautifulSoup(html, 'lxml')
+    img = bfsoup.find_all('img')[0]['src']
+    return img
