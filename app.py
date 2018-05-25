@@ -14,6 +14,8 @@ from selenium.webdriver.chrome.options import Options
 
 from bs4 import BeautifulSoup
 
+import time
+
 
 app = Flask(__name__)
 
@@ -24,16 +26,18 @@ handler = WebhookHandler('ff13f12d5bcfa432e5643dcc7a9685ca')
 
 
 def get_google_image_with_chrome(text):
-    url = 'https://www.google.com.tw/search?hl=zh-TW&tbm=isch&source=hp&biw=1918&bih=947&ei=mbsHW52SL8ae8QWYz4CgAg&q='+text+'&oq='+text+'&gs_l=img.3..0l3j0i10k1l2j0i30k1l5.766.3823.0.4106.6.6.0.0.0.0.98.350.6.6.0....0...1ac.1j4.64.img..0.6.349....0.WN5xu1do3tM'
+    url = 'https://www.google.com.tw/search?hl=zh-TW&tbm=isch&source=hp&biw=1918&bih=947&ei=mbsHW52SL8ae8QWYz4CgAg&q=' \
+          ''+text+'&oq='+text+'&gs_l=img.3..0l3j0i10k1l2j0i30k1l5.766.3823.0.4106.6.6.0.0.0.0.98.350.6.6.0....0...' \
+                              '1ac.1j4.64.img..0.6.349....0.WN5xu1do3tM'
     chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
     chrome_options = Options()
     chrome_options.binary_location = chrome_bin
     driver = webdriver.Chrome(chrome_options=chrome_options)
     driver.get(url)
     html = driver.page_source
+    driver.close()
     bfsoup = BeautifulSoup(html, 'lxml')
     img = bfsoup.find_all('img')[0]['src']
-    driver.close()
     return img
 
 
@@ -66,6 +70,7 @@ def handle_message(event):
     message = str(event.message.text)
     logging.info(message)
     if message == '貼圖':
+        time.sleep(5)
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
