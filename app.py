@@ -7,7 +7,7 @@ import os
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 
-from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerSendMessage
+from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage
 
 
 app = Flask(__name__)
@@ -50,7 +50,7 @@ def handle_message(event):
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
-        sendMsg = TextSendMessage(text='抱歉我不懂')
+        sendMsg = ImageSendMessage(original_content_url='https://media.giphy.com/media/kaq6GnxDlJaBq/giphy.gif')
         line_bot_api.reply_message(event.reply_token, sendMsg)
 
 
