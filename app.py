@@ -31,9 +31,9 @@ def get_google_image_with_chrome(text):
     driver = webdriver.Chrome(chrome_options=chrome_options)
     driver.get(url)
     html = driver.page_source
-    driver.close()
     bfsoup = BeautifulSoup(html, 'lxml')
     img = bfsoup.find_all('img')[0]['src']
+    driver.close()
     return img
 
 
