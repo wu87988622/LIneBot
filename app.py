@@ -23,6 +23,20 @@ line_bot_api = LineBotApi('wxTNX1jIXxlXW4bZqEkZ59PdPLrnhQCCo/qMj3EB62aJomjGqsB8r
 handler = WebhookHandler('ff13f12d5bcfa432e5643dcc7a9685ca')
 
 
+def get_google_image_with_chrome(text):
+    url = 'https://www.google.com.tw/search?hl=zh-TW&tbm=isch&source=hp&biw=1918&bih=947&ei=mbsHW52SL8ae8QWYz4CgAg&q='+text+'&oq='+text+'&gs_l=img.3..0l3j0i10k1l2j0i30k1l5.766.3823.0.4106.6.6.0.0.0.0.98.350.6.6.0....0...1ac.1j4.64.img..0.6.349....0.WN5xu1do3tM'
+    chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+    chrome_options = Options()
+    chrome_options.binary_location = chrome_bin
+    driver = webdriver.Chrome(chrome_options=chrome_options)
+    driver.get(url)
+    html = driver.page_source
+    driver.close()
+    bfsoup = BeautifulSoup(html, 'lxml')
+    img = bfsoup.find_all('img')[0]['src']
+    return img
+
+
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -64,16 +78,3 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
 
-
-def get_google_image_with_chrome(text):
-    url = 'https://www.google.com.tw/search?hl=zh-TW&tbm=isch&source=hp&biw=1918&bih=947&ei=mbsHW52SL8ae8QWYz4CgAg&q='+text+'&oq='+text+'&gs_l=img.3..0l3j0i10k1l2j0i30k1l5.766.3823.0.4106.6.6.0.0.0.0.98.350.6.6.0....0...1ac.1j4.64.img..0.6.349....0.WN5xu1do3tM'
-    chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
-    chrome_options = Options()
-    chrome_options.binary_location = chrome_bin
-    driver = webdriver.Chrome(chrome_options=chrome_options)
-    driver.get(url)
-    html = driver.page_source
-    driver.close()
-    bfsoup = BeautifulSoup(html, 'lxml')
-    img = bfsoup.find_all('img')[0]['src']
-    return img
