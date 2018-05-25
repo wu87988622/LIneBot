@@ -9,12 +9,9 @@ from linebot.exceptions import InvalidSignatureError
 
 from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage, VideoSendMessage
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+import requests
 
 from bs4 import BeautifulSoup
-
-import time
 
 
 app = Flask(__name__)
@@ -26,16 +23,28 @@ handler = WebhookHandler('ff13f12d5bcfa432e5643dcc7a9685ca')
 
 
 def get_google_image_with_chrome(text):
-    url = 'https://www.google.com.tw/search?hl=zh-TW&tbm=isch&source=hp&biw=1918&bih=947&ei=mbsHW52SL8ae8QWYz4CgAg&q=' \
-          ''+text+'&oq='+text+'&gs_l=img.3..0l3j0i10k1l2j0i30k1l5.766.3823.0.4106.6.6.0.0.0.0.98.350.6.6.0....0...' \
-                              '1ac.1j4.64.img..0.6.349....0.WN5xu1do3tM'
-    chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
-    chrome_options = Options()
-    chrome_options.binary_location = chrome_bin
-    driver = webdriver.Chrome(chrome_options=chrome_options)
-    driver.get(url)
-    html = driver.page_source
-    driver.close()
+    url = "https://www.google.com.tw/search"
+
+    querystring = {"biw": "1452", "bih": "947", "tbm": "isch", "sa": "1", "ei": "Iq8HW5O6D4S18QX9hqkg", "q": text,
+                   "oq": text,
+                   "gs_l": "img.12...0.0.0.1858285.0.0.0.0.0.0.0.0..0.0....0...1c..64.img..0.0.0....0.ll9z-7aH7mw"}
+
+    headers = {
+        'upgrade-insecure-requests': "1",
+        'user-agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36",
+        'x-devtools-emulate-network-conditions-client-id': "87F702BD141BDF573D55C870C05BA4DB",
+        'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+        'x-client-data': "CIe2yQEIpbbJAQjEtskBCKmdygEIoJ/KAQioo8oB",
+        'referer': "https://www.google.com.tw/",
+        'accept-encoding': "gzip, deflate, br",
+        'accept-language': "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja;q=0.6,zh-CN;q=0.5",
+        'cache-control': "no-cache",
+        'postman-token': "8d077ad4-b8ee-ffc0-83ad-12992033dca2"
+    }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    print(response.text)
+    html = response.text
     bfsoup = BeautifulSoup(html, 'lxml')
     img = bfsoup.find_all('img')[0]['src']
     return img
@@ -70,7 +79,6 @@ def handle_message(event):
     message = str(event.message.text)
     logging.info(message)
     if message == '貼圖':
-        time.sleep(5)
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
