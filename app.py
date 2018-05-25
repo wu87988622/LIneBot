@@ -23,23 +23,19 @@ handler = WebhookHandler('ff13f12d5bcfa432e5643dcc7a9685ca')
 
 
 def get_google_image(text):
-    url = "https://www.google.com.tw/search"
+    import requests
 
-    querystring = {"biw": "1452", "bih": "947", "tbm": "isch", "sa": "1", "ei": "Iq8HW5O6D4S18QX9hqkg", "q": text,
-                   "oq": text,
-                   "gs_l": "img.12...0.0.0.1858285.0.0.0.0.0.0.0.0..0.0....0...1c..64.img..0.0.0....0.ll9z-7aH7mw"}
+    url = "https://www.google.com/search"
+
+    querystring = {"q": text, "tbm": "isch"}
 
     headers = {
         'upgrade-insecure-requests': "1",
         'user-agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36",
-        'x-devtools-emulate-network-conditions-client-id': "87F702BD141BDF573D55C870C05BA4DB",
         'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-        'x-client-data': "CIe2yQEIpbbJAQjEtskBCKmdygEIoJ/KAQioo8oB",
-        'referer': "https://www.google.com.tw/",
         'accept-encoding': "gzip, deflate, br",
         'accept-language': "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja;q=0.6,zh-CN;q=0.5",
         'cache-control': "no-cache",
-        'postman-token': "8d077ad4-b8ee-ffc0-83ad-12992033dca2"
     }
     img = ''
     response = requests.request("GET", url, headers=headers, params=querystring)
