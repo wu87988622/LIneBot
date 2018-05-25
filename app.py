@@ -22,7 +22,7 @@ line_bot_api = LineBotApi('wxTNX1jIXxlXW4bZqEkZ59PdPLrnhQCCo/qMj3EB62aJomjGqsB8r
 handler = WebhookHandler('ff13f12d5bcfa432e5643dcc7a9685ca')
 
 
-def get_google_image_with_chrome(text):
+def get_google_image(text):
     url = "https://www.google.com.tw/search"
 
     querystring = {"biw": "1452", "bih": "947", "tbm": "isch", "sa": "1", "ei": "Iq8HW5O6D4S18QX9hqkg", "q": text,
@@ -43,10 +43,9 @@ def get_google_image_with_chrome(text):
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
-    print(response.text)
     html = response.text
     bfsoup = BeautifulSoup(html, 'lxml')
-    img = bfsoup.find_all('img')[0]['src']
+    img = bfsoup.find_all('img')[1]['src']
     return img
 
 
@@ -82,8 +81,8 @@ def handle_message(event):
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
-        imgUrl = get_google_image_with_chrome(message)
-        sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url= imgUrl)
+        imgUrl = get_google_image(message)
+        sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl)
         line_bot_api.reply_message(event.reply_token, sendMsg)
 
 
