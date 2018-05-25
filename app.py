@@ -55,7 +55,7 @@ def handle_message(event):
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
-        imgUrl = get_google_image(message)
+        imgUrl = get_google_image_with_chrome(message)
         sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url= imgUrl)
         line_bot_api.reply_message(event.reply_token, sendMsg)
 
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0', port=port)
 
 
-def get_google_image(text):
+def get_google_image_with_chrome(text):
     url = 'https://www.google.com.tw/search?hl=zh-TW&tbm=isch&source=hp&biw=1918&bih=947&ei=mbsHW52SL8ae8QWYz4CgAg&q='+text+'&oq='+text+'&gs_l=img.3..0l3j0i10k1l2j0i30k1l5.766.3823.0.4106.6.6.0.0.0.0.98.350.6.6.0....0...1ac.1j4.64.img..0.6.349....0.WN5xu1do3tM'
     chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
     chrome_options = Options()
