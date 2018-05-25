@@ -42,11 +42,11 @@ def get_google_image(text):
         'postman-token': "8d077ad4-b8ee-ffc0-83ad-12992033dca2"
     }
     response = requests.request("GET", url, headers=headers, params=querystring)
-    response.encoding = 'utf-8'
     html = response.text
-    logging.info(html)
     bfsoup = BeautifulSoup(html, 'lxml')
-    img = bfsoup.find_all('img')[1]['src']
+    for imgs in bfsoup.find_all('img'):
+        if imgs.has_attr('src'):
+            img = imgs['src']
     return img
 
 
