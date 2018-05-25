@@ -22,9 +22,35 @@ line_bot_api = LineBotApi('wxTNX1jIXxlXW4bZqEkZ59PdPLrnhQCCo/qMj3EB62aJomjGqsB8r
 handler = WebhookHandler('ff13f12d5bcfa432e5643dcc7a9685ca')
 
 
-def get_google_image(text):
-    import requests
+def get_ig_image(url):
+    url = url
 
+    headers = {
+        'upgrade-insecure-requests': "1",
+        'user-agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36",
+        'x-devtools-emulate-network-conditions-client-id': "379C7E1731D5EC5644322518D3388AC9",
+        'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+        'accept-language': "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja;q=0.6,zh-CN;q=0.5",
+        'cache-control': "no-cache",
+        'postman-token': "814c2860-230d-57c8-cef1-199b93654a91"
+    }
+
+    response = requests.request("GET", url, headers=headers)
+    html = response.text
+    bfsoup = BeautifulSoup(html, 'lxml')
+    jsonStr = str(bfsoup.find_all('script')[3]).replace('window._sharedData = ', '')
+    jsons = json.loads(jsonStr)
+    imgs =[]
+    for pg in jsons['PostPage']:
+        child = pg['edge_sidecar_to_children']
+        for edge in child['edges']:
+            node = edge['node']
+            src = node['display_resources'][2]['src']
+            imgs.append(src)
+    return imgs
+
+
+def get_google_image(text):
     url = "https://www.google.com/search"
 
     querystring = {"q": text, "tbm": "isch"}
@@ -78,6 +104,12 @@ def handle_message(event):
     if message == '貼圖':
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
+    elif message.index('ig:'):
+        url = message.split(':')[1]
+        imgUrls = get_ig_image(url)
+        for imgUrl in imgUrls:
+            sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl)
+            line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
         imgUrl = get_google_image(message)
         sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl)
