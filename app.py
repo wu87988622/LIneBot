@@ -47,7 +47,7 @@ def handle_message(event):
     message = event.message.text
     logging.info(message)
     if str(message) is "貼圖":
-        sendMsg = StickerSendMessage(package_id='1033962', sticker_id='1435740')
+        sendMsg = StickerSendMessage(package_id='1', sticker_id='1')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
         sendMsg = TextSendMessage(text='抱歉我不懂')
