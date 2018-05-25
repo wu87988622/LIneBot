@@ -104,7 +104,7 @@ def handle_message(event):
     if message == '貼圖':
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message.index('ig:'):
+    elif message.find('ig:') != -1:
         url = message.split(':')[1]
         imgUrls = get_ig_image(url)
         for imgUrl in imgUrls:
