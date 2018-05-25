@@ -41,9 +41,9 @@ def get_google_image(text):
         'cache-control': "no-cache",
         'postman-token': "8d077ad4-b8ee-ffc0-83ad-12992033dca2"
     }
-
     response = requests.request("GET", url, headers=headers, params=querystring)
     html = response.text
+    logging.info(html)
     bfsoup = BeautifulSoup(html, 'lxml')
     img = bfsoup.find_all('img')[1]['src']
     return img
