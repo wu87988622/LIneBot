@@ -7,7 +7,7 @@ import os
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 
-from linebot.models import TextMessage
+from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerSendMessage
 
 
 app = Flask(__name__)
@@ -17,26 +17,43 @@ line_bot_api = LineBotApi('wxTNX1jIXxlXW4bZqEkZ59PdPLrnhQCCo/qMj3EB62aJomjGqsB8r
 # Channel Secret
 handler = WebhookHandler('ff13f12d5bcfa432e5643dcc7a9685ca')
 
+
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
+    #Json Post
+    #j = json.loads(body, object_hook=lineJson.as_lineJson)
+    #type(j)
+
     # get X-Line-Signature header value
-    # signature = request.headers['Content-Type: application/json']
+    signature = request.headers['X-Line-Signature']
 
     # get request body as text
-    logging.basicConfig(level=logging.INFO)
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
-    j = json.loads(body, object_hook=lineJson.as_lineJson)
-    type(j)
+
     # handle webhook body
     try:
-        line_bot_api.push_message(j.lineID, TextMessage(text=j.text))
+        handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
 
     return 'OK'
 
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    message = TextSendMessage(text=event.message.text)
+    if message is '貼圖':
+        sendMsg = StickerSendMessage(package_id='1033962', sticker_id='1435740')
+        line_bot_api.reply_message(event.reply_token, sendMsg)
+    else:
+        sendMsg = TextSendMessage(text='抱歉我不懂')
+        line_bot_api.reply_message(event.reply_token, sendMsg)
+
+
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
+    body = request.get_data(as_text=True)
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
