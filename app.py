@@ -21,6 +21,7 @@ handler = WebhookHandler('ff13f12d5bcfa432e5643dcc7a9685ca')
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
+    logging.basicConfig(level=logging.INFO)
     #Json Post
     #j = json.loads(body, object_hook=lineJson.as_lineJson)
     #type(j)
@@ -53,7 +54,5 @@ def handle_message(event):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    body = request.get_data(as_text=True)
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
