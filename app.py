@@ -41,8 +41,8 @@ def get_google_image(text):
     html = response.text
     bfsoup = BeautifulSoup(html, 'lxml')
     for imgs in bfsoup.find_all('img'):
-        if imgs.has_attr('src'):
-            img = imgs['src']
+        if imgs.has_attr('data-src'):
+            img = imgs['data-src']
     logging.info(img)
     return img
 
