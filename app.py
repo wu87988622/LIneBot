@@ -45,6 +45,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
+    logging.info(message)
     if message is '貼圖':
         sendMsg = StickerSendMessage(package_id='1033962', sticker_id='1435740')
         line_bot_api.reply_message(event.reply_token, sendMsg)
