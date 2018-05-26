@@ -38,7 +38,7 @@ def get_ig_image(url):
     response = requests.request("GET", url, headers=headers)
     html = response.text
     bfsoup = BeautifulSoup(html, 'lxml')
-    jsonStr = str(bfsoup.find_all('script')[2].text).replace('window._sharedData = ', '')
+    jsonStr = str(bfsoup.find_all('script')[2].text).replace('window._sharedData = ', '')[:-1]
     logging.info(jsonStr)
     jsons = json.loads(jsonStr)
     imgs =[]
