@@ -41,7 +41,8 @@ def get_ig_image(url):
     jsonStr = str(bfsoup.find_all('script')[2].text).replace('window._sharedData = ', '')[:-1]
     logging.info(jsonStr)
     jsons = json.loads(jsonStr)
-    imgs =[]
+    imgs = []
+    mp4 = []
     entry_data = jsons['entry_data']
     for pg in entry_data['PostPage']:
         graphql = pg['graphql']
@@ -49,9 +50,15 @@ def get_ig_image(url):
         child = shortcode_media['edge_sidecar_to_children']
         for edge in child['edges']:
             node = edge['node']
-            src = node['display_resources'][2]['src']
-            imgs.append(src)
-    return imgs
+            if node['is_video'] is True:
+                url = node['video_url']
+                img = node['display_resources'][0]['src']
+                mp4.append(url+','+img)
+            else:
+                src = node['display_resources'][2]['src']
+                imgs.append(src)
+    ig_map = {'img': imgs, 'mp4': mp4}
+    return
 
 
 def get_google_image(text):
@@ -110,11 +117,18 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message.find('ig:') != -1:
         url = message[3:]
-        imgUrls = get_ig_image(url)
+        imgMap = get_ig_image(url)
         sendMsg = []
+        imgUrls = imgMap['img']
+        mp4s = imgMap['mp4']
         for imgUrl in imgUrls:
             logging.info(imgUrl)
             sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
+        for mp4 in mp4s:
+            logging.info(mp4)
+            mp4Url = str(mp4).split(',')
+            sendMsg.append(VideoSendMessage(original_content_url=mp4Url[0],
+                                            preview_image_url=mp4Url[1]))
         line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
         imgUrl = get_google_image(message)
