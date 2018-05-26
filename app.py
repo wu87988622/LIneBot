@@ -39,6 +39,7 @@ def get_ig_image(url):
     html = response.text
     bfsoup = BeautifulSoup(html, 'lxml')
     jsonStr = str(bfsoup.find_all('script')[3]).replace('window._sharedData = ', '')
+    logging.info(jsonStr)
     jsons = json.loads(jsonStr)
     imgs =[]
     for pg in jsons['PostPage']:
@@ -106,7 +107,6 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message.find('ig:') != -1:
         url = message[3:]
-        logging.info(url)
         imgUrls = get_ig_image(url)
         for imgUrl in imgUrls:
             logging.info(imgUrl)
