@@ -108,6 +108,7 @@ def handle_message(event):
         url = message.split(':')[1]
         imgUrls = get_ig_image(url)
         for imgUrl in imgUrls:
+            logging.info(imgUrl)
             sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl)
             line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
