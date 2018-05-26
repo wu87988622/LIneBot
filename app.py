@@ -44,7 +44,8 @@ def get_ig_image(url):
     imgs =[]
     entry_data = jsons['entry_data']
     for pg in entry_data['PostPage']:
-        child = pg['edge_sidecar_to_children']
+        graphql = pg['graphql']
+        child = graphql['edge_sidecar_to_children']
         for edge in child['edges']:
             node = edge['node']
             src = node['display_resources'][2]['src']
