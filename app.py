@@ -42,7 +42,8 @@ def get_ig_image(url):
     logging.info(jsonStr)
     jsons = json.loads(jsonStr)
     imgs =[]
-    for pg in jsons['PostPage']:
+    entry_data = jsons['entry_data']
+    for pg in entry_data['PostPage']:
         child = pg['edge_sidecar_to_children']
         for edge in child['edges']:
             node = edge['node']
