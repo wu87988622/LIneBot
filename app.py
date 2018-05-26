@@ -58,7 +58,7 @@ def get_ig_image(url):
                 src = node['display_resources'][2]['src']
                 imgs.append(src)
     ig_map = {'img': imgs, 'mp4': mp4}
-    return
+    return ig_map
 
 
 def get_google_image(text):
