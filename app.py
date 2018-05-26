@@ -106,6 +106,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message.find('ig:') != -1:
         url = message.split(':')[1]
+        logging.info(url)
         imgUrls = get_ig_image(url)
         for imgUrl in imgUrls:
             logging.info(imgUrl)
