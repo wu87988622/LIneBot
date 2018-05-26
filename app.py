@@ -105,7 +105,7 @@ def handle_message(event):
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message.find('ig:') != -1:
-        url = message.split(':')[1] + message.split(':')[2]
+        url = message[3:]
         logging.info(url)
         imgUrls = get_ig_image(url)
         for imgUrl in imgUrls:
