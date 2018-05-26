@@ -111,10 +111,11 @@ def handle_message(event):
     elif message.find('ig:') != -1:
         url = message[3:]
         imgUrls = get_ig_image(url)
+        sendMsg = []
         for imgUrl in imgUrls:
             logging.info(imgUrl)
-            sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl)
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
+        line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
         imgUrl = get_google_image(message)
         sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl)
