@@ -39,7 +39,7 @@ def get_ig_image(url):
     html = response.text
     bfsoup = BeautifulSoup(html, 'lxml')
     jsonStr = str(bfsoup.find_all('script')[2].text).replace('window._sharedData = ', '')[:-1]
-    logging.info(jsonStr)
+    # logging.info(jsonStr)
     jsons = json.loads(jsonStr)
     imgs = []
     mp4 = []
