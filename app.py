@@ -44,8 +44,9 @@ def get_ig_user(text):
         graphql = profilePage['graphql']
         user = graphql['user']
         for media in user['edge_owner_to_timeline_media']:
-            for edges in media['edges']:
-                src = edges['thumbnail_resources'][4]['src']
+            for edge in media['edges']:
+                node = edge['node']
+                src = node['thumbnail_resources'][4]['src']
                 imgs.append(src)
     return imgs
 
