@@ -39,9 +39,10 @@ def get_ig_user(text):
     jsons = json.loads(jsonStr)
     imgs = []
     entry_data = jsons['entry_data']
-    ProfilePages = entry_data['ProfilePage']
-    for ProfilePage in ProfilePages:
-        user = ProfilePage['user']
+    profilePages = entry_data['ProfilePage']
+    for profilePage in profilePages:
+        graphql = profilePage['graphql']
+        user = graphql['user']
         for media in user['edge_owner_to_timeline_media']:
             for edges in media['edges']:
                 src = edges['thumbnail_resources'][4]['src']
