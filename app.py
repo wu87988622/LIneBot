@@ -144,16 +144,17 @@ def handle_message(event):
             mp4s = imgMap['mp4']
             for imgUrl in imgUrls:
                 logging.info(imgUrl)
-                sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
+                if len(sendMsg) < 5:
+                    sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
             for mp4 in mp4s:
                 logging.info(mp4)
                 mp4Url = str(mp4).split(',')
-                sendMsg.append(VideoSendMessage(original_content_url=mp4Url[0],
-                                                preview_image_url=mp4Url[1]))
+                if len(sendMsg) < 5:
+                    sendMsg.append(VideoSendMessage(original_content_url=mp4Url[0],
+                                                    preview_image_url=mp4Url[1]))
             line_bot_api.reply_message(event.reply_token, sendMsg)
         else:
             text = message[3:]
-            logging.info(text)
             imgUrls = get_ig_user(text)
             sendMsg = []
             for imgUrl in imgUrls:
