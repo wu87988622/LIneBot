@@ -21,21 +21,36 @@ line_bot_api = LineBotApi('wxTNX1jIXxlXW4bZqEkZ59PdPLrnhQCCo/qMj3EB62aJomjGqsB8r
 # Channel Secret
 handler = WebhookHandler('ff13f12d5bcfa432e5643dcc7a9685ca')
 
+ig_headers = {
+        'upgrade-insecure-requests': "1",
+        'user-agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36",
+        'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+        'accept-language': "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja;q=0.6,zh-CN;q=0.5",
+        'cache-control': "no-cache"
+}
+
+def get_ig_user(text):
+    url = 'https://www.instagram.com/'+text+'/'
+    response = requests.request("GET", url, headers=ig_headers)
+    html = response.text
+    bfsoup = BeautifulSoup(html, 'lxml')
+    jsonStr = str(bfsoup.find_all('script')[2].text).replace('window._sharedData = ', '')[:-1]
+    jsons = json.loads(jsonStr)
+    imgs = []
+    entry_data = jsons['entry_data']
+    ProfilePages = entry_data['ProfilePage']
+    for ProfilePage in ProfilePages:
+        user = ProfilePage['user']
+        for media in user['edge_owner_to_timeline_media']:
+            for edges in media['edges']:
+                src = edges['thumbnail_resources'][4]['src']
+                imgs.append(src)
+    return imgs
+
 
 def get_ig_image(url):
     url = url
-
-    headers = {
-        'upgrade-insecure-requests': "1",
-        'user-agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36",
-        'x-devtools-emulate-network-conditions-client-id': "379C7E1731D5EC5644322518D3388AC9",
-        'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-        'accept-language': "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja;q=0.6,zh-CN;q=0.5",
-        'cache-control': "no-cache",
-        'postman-token': "814c2860-230d-57c8-cef1-199b93654a91"
-    }
-
-    response = requests.request("GET", url, headers=headers)
+    response = requests.request("GET", url, headers=ig_headers)
     html = response.text
     bfsoup = BeautifulSoup(html, 'lxml')
     jsonStr = str(bfsoup.find_all('script')[2].text).replace('window._sharedData = ', '')[:-1]
@@ -116,20 +131,29 @@ def handle_message(event):
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message.find('ig:') != -1:
-        url = message[3:]
-        imgMap = get_ig_image(url)
-        sendMsg = []
-        imgUrls = imgMap['img']
-        mp4s = imgMap['mp4']
-        for imgUrl in imgUrls:
-            logging.info(imgUrl)
-            sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
-        for mp4 in mp4s:
-            logging.info(mp4)
-            mp4Url = str(mp4).split(',')
-            sendMsg.append(VideoSendMessage(original_content_url=mp4Url[0],
-                                            preview_image_url=mp4Url[1]))
-        line_bot_api.reply_message(event.reply_token, sendMsg)
+        if(message.find('http')):
+            url = message[3:]
+            imgMap = get_ig_image(url)
+            sendMsg = []
+            imgUrls = imgMap['img']
+            mp4s = imgMap['mp4']
+            for imgUrl in imgUrls:
+                logging.info(imgUrl)
+                sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
+            for mp4 in mp4s:
+                logging.info(mp4)
+                mp4Url = str(mp4).split(',')
+                sendMsg.append(VideoSendMessage(original_content_url=mp4Url[0],
+                                                preview_image_url=mp4Url[1]))
+            line_bot_api.reply_message(event.reply_token, sendMsg)
+        else:
+            text = message[3:]
+            imgUrls = get_ig_user(text)
+            sendMsg = []
+            for imgUrl in imgUrls:
+                logging.info(imgUrl)
+                sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
+            line_bot_api.reply_message(event.reply_token, sendMsg)
     else:
         imgUrl = get_google_image(message)
         sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl)
