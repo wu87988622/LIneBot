@@ -48,7 +48,7 @@ def get_ig_user(text):
         for edge in edges:
             node = edge['node']
             src = node['thumbnail_resources'][4]['src']
-            if len(imgs) > 4:
+            if len(imgs) < 5:
                 imgs.append(src)
     return imgs
 
@@ -153,6 +153,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, sendMsg)
         else:
             text = message[3:]
+            logging.info(text)
             imgUrls = get_ig_user(text)
             sendMsg = []
             for imgUrl in imgUrls:
