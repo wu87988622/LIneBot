@@ -29,6 +29,7 @@ ig_headers = {
         'cache-control': "no-cache"
 }
 
+
 def get_ig_user(text):
     url = 'https://www.instagram.com/'+text+'/'
     response = requests.request("GET", url, headers=ig_headers)
@@ -131,7 +132,7 @@ def handle_message(event):
         sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message.find('ig:') != -1:
-        if(message.find('http')):
+        if message.find('http') != -1:
             url = message[3:]
             imgMap = get_ig_image(url)
             sendMsg = []
