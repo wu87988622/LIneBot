@@ -48,7 +48,8 @@ def get_ig_user(text):
         for edge in edges:
             node = edge['node']
             src = node['thumbnail_resources'][4]['src']
-            imgs.append(src)
+            if len(imgs) > 4:
+                imgs.append(src)
     return imgs
 
 
