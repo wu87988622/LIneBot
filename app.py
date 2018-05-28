@@ -169,7 +169,7 @@ def handle_message(event):
     elif message == '打招呼':
         sendMsg = TextSendMessage(text='志鈞哥，馬克哥 早安!!')
         line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message == '治軍':
+    elif message.find('治軍') != -1:
         sendMsg = TextSendMessage(text='志鈞拉 幹')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message.find('在') != -1:
