@@ -166,8 +166,9 @@ def handle_message(event):
         imgUrl = get_google_image(gMsg)
         sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl)
         line_bot_api.reply_message(event.reply_token, sendMsg)
-
-
+    elif message == '打招呼':
+        sendMsg = TextSendMessage(text='志鈞哥，馬克哥 早安!!')
+        line_bot_api.reply_message(event.reply_token, sendMsg)
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
