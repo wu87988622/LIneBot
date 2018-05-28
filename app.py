@@ -172,6 +172,9 @@ def handle_message(event):
     elif message == '治軍':
         sendMsg = TextSendMessage(text='志鈞拉 幹')
         line_bot_api.reply_message(event.reply_token, sendMsg)
+    elif message.find('在') != -1:
+        sendMsg = TextSendMessage(text='再拉 幹')
+        line_bot_api.reply_message(event.reply_token, sendMsg)
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
