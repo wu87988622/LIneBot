@@ -176,7 +176,10 @@ def handle_message(event):
     #    sendMsg = TextSendMessage(text='再拉 幹')
     #    line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message.find('幹') != -1:
-        sendMsg = TextSendMessage(text='我是格魯特')
+        sendMsg = []
+        sendMsg.append(TextSendMessage(text='我是格魯特'))
+        imgUrl = 'https://drive.google.com/open?id=1ZU3SDRBqtfzV-TNyJqm8TTidDcPGFKpN'
+        sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
         line_bot_api.reply_message(event.reply_token, sendMsg)
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
