@@ -178,7 +178,7 @@ def handle_message(event):
     elif message.find('幹') != -1:
         sendMsg = []
         sendMsg.append(TextSendMessage(text='我是格魯特'))
-        imgUrl = 'https://drive.google.com/open?id=1ZU3SDRBqtfzV-TNyJqm8TTidDcPGFKpN'
+        imgUrl = 'https://lh4.googleusercontent.com/ic-JdUd8ZSgHfNUfhsb8Od9vlYhEXqqpWA8IVEuCLZ1dF6d1mPQ0Z9AzaAgCBmVkDhczvh1hIACpuhAOgWTu=w1920-h917'
         sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
         line_bot_api.reply_message(event.reply_token, sendMsg)
 if __name__ == "__main__":
