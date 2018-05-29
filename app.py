@@ -181,6 +181,9 @@ def handle_message(event):
         imgUrl = 'https://lh4.googleusercontent.com/ic-JdUd8ZSgHfNUfhsb8Od9vlYhEXqqpWA8IVEuCLZ1dF6d1mPQ0Z9AzaAgCBmVkDhczvh1hIACpuhAOgWTu=w1920-h917'
         sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
         line_bot_api.reply_message(event.reply_token, sendMsg)
+    elif message == 'ㄤ':
+        sendMsg = TextSendMessage(text='ㄤㄤ泥豪')
+        line_bot_api.reply_message(event.reply_token, sendMsg)
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
