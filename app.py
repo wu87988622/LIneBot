@@ -104,7 +104,7 @@ def get_google_image(text):
     return img
 
 
-@app.route("/ex", methods=['post'])
+@app.route("/ex", methods=['POST'])
 def ex():
     body = request.get_data(as_text=True)
     j = json.loads(body, object_hook=lineJson.as_lineJson)
@@ -114,6 +114,7 @@ def ex():
     except InvalidSignatureError:
         abort(400)
     return 'OK'
+
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
