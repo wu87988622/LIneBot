@@ -106,7 +106,7 @@ def get_google_image(text):
 
 @app.route("/ex", methods=['post'])
 def ex():
-    body = request.get_date(as_text=True)
+    body = request.get_data(as_text=True)
     j = json.loads(body, object_hook=lineJson.as_lineJson)
     type(j)
     try:
