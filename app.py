@@ -106,7 +106,9 @@ def get_google_image(text):
 
 @app.route("/ex", methods=['POST'])
 def ex():
+    logging.basicConfig(level=logging.INFO)
     body = request.get_data(as_text=True)
+    app.logger.info(body)
     j = json.loads(body, object_hook=lineJson.as_lineJson)
     type(j)
     try:
