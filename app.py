@@ -203,7 +203,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message == '我知道':
         sendMsg = TextSendMessage(text='知道還問')
-        line_bot_api.reply_message(event.replu_token, sendMsg)
+        line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message == '我沒有資格問嗎':
         sendMsg = TextSendMessage(text='有資格！有資格！有資格！')
         line_bot_api.reply_message(event.reply_token, sendMsg)
