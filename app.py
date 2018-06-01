@@ -198,6 +198,17 @@ def handle_message(event):
     elif message == '叫大哥':
         sendMsg = TextSendMessage(text='大哥好')
         line_bot_api.reply_message(event.reply_token, sendMsg)
+    elif message == '這是什麼':
+        sendMsg = TextSendMessage(text='港幣！')
+        line_bot_api.reply_message(event.reply_token, sendMsg)
+    elif message == '我知道':
+        sendMsg = TextSendMessage(text='知道還問')
+        line_bot_api.reply_message(event.replu_token, sendMsg)
+    elif message == '我沒有資格問嗎':
+        sendMsg = TextSendMessage(text='有資格！有資格！有資格！')
+        line_bot_api.reply_message(event.reply_token, sendMsg)
+
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
