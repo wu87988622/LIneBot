@@ -190,7 +190,7 @@ def handle_message(event):
     #    sendMsg = TextSendMessage(text='再拉 幹')
     #    line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message.find('幹') != -1:
-        sendMsg = TextSendMessage(text='我是格魯特')
+        sendMsg = TextSendMessage(text='I\'m Groot')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message == 'ㄤ':
         sendMsg = TextSendMessage(text='ㄤㄤ泥豪')
