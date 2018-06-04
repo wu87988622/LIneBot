@@ -208,7 +208,12 @@ def handle_message(event):
         sendMsg = TextSendMessage(text='有資格！有資格！有資格！')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message == 'getid':
-        sendMsg = TextSendMessage(text=event.source.user_id)
+        if event.source.type == 'user':
+            sendMsg = TextSendMessage(text=event.source.user_id)
+        elif event.source.type == 'group':
+            sendMsg = TextSendMessage(text=event.source.group_id)
+        elif event.source.type == 'room':
+            sendMsg = TextSendMessage(text=event.source.room_id)
         line_bot_api.reply_message(event.reply_token, sendMsg)
 
 
