@@ -226,24 +226,15 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, sendMsg)
             break
         if case('道歉'):
-            user_id = str(event.source.user_id)
-            for case2 in user_id:
-                if case2('U96e561374b413379c8fddc22ed185e9e'):
-                    sendMsg = TextSendMessage(text='馬克哥 抱歉 妹子看到你都懷孕了')
-                    line_bot_api.reply_message(event.reply_token, sendMsg)
-                    break
-                if case2('Ud272182402cd7a29ad48a1a68d924eee'):
-                    sendMsg = TextSendMessage(text='Q哥 你頭髮世界直 抱歉')
-                    line_bot_api.reply_message(event.reply_token, sendMsg)
-                    break
-                if case2('U0677c83831ba745c15b5bd68e79f7d12'):
-                    sendMsg = TextSendMessage(text='哲哥 抱歉 你水冷最猛')
-                    line_bot_api.reply_message(event.reply_token, sendMsg)
-                    break
-                if case2('Ua6e5cc1dc6fbeaca3f6db3f220c2782a'):
-                    sendMsg = TextSendMessage(text='大哥抱歉\n我應該叫您的本名\n您是如來佛祖玉皇大帝觀音菩薩指定取西經特派使者花果山水濂洞美猴王齊天大聖黃志鈞\n帥到掉渣\n我的膝蓋你收下')
-                    line_bot_api.reply_message(event.reply_token, sendMsg)
-                    break
+            if event.source.user_id == 'U96e561374b413379c8fddc22ed185e9e':
+                sendMsg = TextSendMessage(text='馬克哥 抱歉 妹子看到你都懷孕了')
+            if event.source.user_id == 'Ud272182402cd7a29ad48a1a68d924eee':
+                sendMsg = TextSendMessage(text='Q哥 你頭髮世界直 抱歉')
+            if event.source.user_id == 'U0677c83831ba745c15b5bd68e79f7d12':
+                sendMsg = TextSendMessage(text='哲哥 抱歉 你水冷最猛')
+            if event.source.user_id == 'Ua6e5cc1dc6fbeaca3f6db3f220c2782a':
+                sendMsg = TextSendMessage(text='大哥抱歉\n我應該叫您的本名\n您是如來佛祖玉皇大帝觀音菩薩指定取西經特派使者花果山水濂洞美猴王齊天大聖黃志鈞\n帥到掉渣\n我的膝蓋你收下')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
             break
 
 
