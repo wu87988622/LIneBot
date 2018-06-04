@@ -3,6 +3,7 @@ import logging
 import json
 import lineJson
 import os
+import switch
 
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -146,10 +147,7 @@ def callback():
 def handle_message(event):
     message = str(event.message.text)
     logging.info(message)
-    if message == '貼圖':
-        sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
-        line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message.find('ig:') != -1:
+    if message.find('ig:') != -1:
         if message.find('http') != -1:
             url = message[3:]
             imgMap = get_ig_image(url)
@@ -175,46 +173,58 @@ def handle_message(event):
                 logging.info(imgUrl)
                 sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
             line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message.find('g:') != -1:
+    if message.find('g:') != -1:
         gMsg = message[3:]
         imgUrl = get_google_image(gMsg)
         sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl)
         line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message == '打招呼':
-        sendMsg = TextSendMessage(text='志鈞哥，馬克哥 早安!!')
-        line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message.find('治軍') != -1:
+    if message.find('治軍') != -1:
         sendMsg = TextSendMessage(text='志鈞拉 幹')
         line_bot_api.reply_message(event.reply_token, sendMsg)
-    #elif message.find('在') != -1:
+    #if message.find('在') != -1:
     #    sendMsg = TextSendMessage(text='再拉 幹')
     #    line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message.find('幹') != -1:
+    if message.find('幹') != -1:
         sendMsg = TextSendMessage(text='I\'m Groot')
         line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message == 'ㄤ':
-        sendMsg = TextSendMessage(text='ㄤㄤ泥豪')
-        line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message == '叫大哥':
-        sendMsg = TextSendMessage(text='大哥好')
-        line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message == '這是什麼':
-        sendMsg = TextSendMessage(text='港幣！')
-        line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message == '我知道':
-        sendMsg = TextSendMessage(text='知道還問')
-        line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message == '我沒有資格問嗎':
-        sendMsg = TextSendMessage(text='有資格！有資格！有資格！')
-        line_bot_api.reply_message(event.reply_token, sendMsg)
-    elif message == 'getid':
-        if event.source.type == 'user':
-            sendMsg = TextSendMessage(text=event.source.user_id)
-        elif event.source.type == 'group':
-            sendMsg = TextSendMessage(text=event.source.group_id)
-        elif event.source.type == 'room':
-            sendMsg = TextSendMessage(text=event.source.room_id)
-        line_bot_api.reply_message(event.reply_token, sendMsg)
+    for case in switch(message):
+        if case('貼圖'):
+            sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
+        if case('打招呼'):
+            sendMsg = TextSendMessage(text='志鈞哥，馬克哥 早安!!')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
+        if case('ㄤ'):
+            sendMsg = TextSendMessage(text='ㄤㄤ泥豪')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
+        if case('叫大哥'):
+            sendMsg = TextSendMessage(text='大哥好')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
+        if case('這是什麼'):
+            sendMsg = TextSendMessage(text='港幣！')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
+        if case('我知道'):
+            sendMsg = TextSendMessage(text='知道還問')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
+        if case('我沒有資格問嗎'):
+            sendMsg = TextSendMessage(text='有資格！有資格！有資格！')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
+        if case('getid'):
+            if event.source.type == 'user':
+                sendMsg = TextSendMessage(text=event.source.user_id)
+            elif event.source.type == 'group':
+                sendMsg = TextSendMessage(text=event.source.group_id)
+            elif event.source.type == 'room':
+                sendMsg = TextSendMessage(text=event.source.room_id)
+                line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
 
 
 if __name__ == "__main__":
