@@ -225,6 +225,11 @@ def handle_message(event):
                 sendMsg = TextSendMessage(text=event.source.room_id)
             line_bot_api.reply_message(event.reply_token, sendMsg)
             break
+        if case('道歉'):
+            if event.source.user_id == 'U96e561374b413379c8fddc22ed185e9e':
+                sendMsg = TextSendMessage(text='馬克哥 抱歉 小弟錯了')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
+
 
 
 if __name__ == "__main__":
