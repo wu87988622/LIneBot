@@ -3,7 +3,7 @@ import logging
 import json
 import lineJson
 import os
-import switch
+from switch import switch
 
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
