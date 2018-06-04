@@ -228,6 +228,8 @@ def handle_message(event):
         if case('道歉'):
             if event.source.user_id == 'U96e561374b413379c8fddc22ed185e9e':
                 sendMsg = TextSendMessage(text='馬克哥 抱歉 小弟錯了')
+            if event.source.user_id == 'Ud272182402cd7a29ad48a1a68d924eee':
+                sendMsg = TextSendMessage(text='Q哥 你GG最大了 抱歉')
             line_bot_api.reply_message(event.reply_token, sendMsg)
 
 
