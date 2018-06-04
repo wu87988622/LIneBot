@@ -36,7 +36,7 @@ def get_ig_user(text):
     response = requests.request("GET", url, headers=ig_headers)
     html = response.text
     bfsoup = BeautifulSoup(html, 'lxml')
-    jsonStr = str(bfsoup.find_all('script')[2].text).replace('window._sharedData = ', '')[:-1]
+    jsonStr = str(bfsoup.find_all('script')[3].text).replace('window._sharedData = ', '')[:-1]
     jsons = json.loads(jsonStr)
     imgs = []
     entry_data = jsons['entry_data']
@@ -59,7 +59,7 @@ def get_ig_image(url):
     response = requests.request("GET", url, headers=ig_headers)
     html = response.text
     bfsoup = BeautifulSoup(html, 'lxml')
-    jsonStr = str(bfsoup.find_all('script')[2].text).replace('window._sharedData = ', '')[:-1]
+    jsonStr = str(bfsoup.find_all('script')[3].text).replace('window._sharedData = ', '')[:-1]
     # logging.info(jsonStr)
     jsons = json.loads(jsonStr)
     imgs = []
