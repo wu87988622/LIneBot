@@ -226,7 +226,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, sendMsg)
             break
         if case('道歉'):
-            user_id = event.source.user_id
+            user_id = str(event.source.user_id)
             for case2 in user_id:
                 if case2('U96e561374b413379c8fddc22ed185e9e'):
                     sendMsg = TextSendMessage(text='馬克哥 抱歉 妹子看到你都懷孕了')
