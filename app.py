@@ -244,6 +244,7 @@ def handle_message(event):
                     sendMsg = TextSendMessage(text='大哥抱歉\n我應該叫您的本名\n您是如來佛祖玉皇大帝觀音菩薩指定取西經特派使者花果山水濂洞美猴王齊天大聖黃志鈞\n帥到掉渣\n我的膝蓋你收下')
                     line_bot_api.reply_message(event.reply_token, sendMsg)
                     break
+            break
 
 
 if __name__ == "__main__":
