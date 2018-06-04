@@ -230,6 +230,8 @@ def handle_message(event):
                 sendMsg = TextSendMessage(text='馬克哥 抱歉 妹子看到你都懷孕了')
             if event.source.user_id == 'Ud272182402cd7a29ad48a1a68d924eee':
                 sendMsg = TextSendMessage(text='Q哥 你GG最大了 抱歉')
+            if event.source.user_id == 'U0677c83831ba745c15b5bd68e79f7d12':
+                sendMsg = TextSendMessage(text='哲哥 抱歉 你水冷最猛')
             line_bot_api.reply_message(event.reply_token, sendMsg)
 
 
