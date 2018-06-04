@@ -223,7 +223,7 @@ def handle_message(event):
                 sendMsg = TextSendMessage(text=event.source.group_id)
             elif event.source.type == 'room':
                 sendMsg = TextSendMessage(text=event.source.room_id)
-                line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(event.reply_token, sendMsg)
             break
 
 
