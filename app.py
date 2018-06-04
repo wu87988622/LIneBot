@@ -208,7 +208,7 @@ def handle_message(event):
         sendMsg = TextSendMessage(text='有資格！有資格！有資格！')
         line_bot_api.reply_message(event.reply_token, sendMsg)
     elif message == 'getid':
-        sendMsg = TextSendMessage(text=event.reply_token)
+        sendMsg = TextSendMessage(text=event)
         line_bot_api.reply_message(event.reply_token, sendMsg)
 
 
