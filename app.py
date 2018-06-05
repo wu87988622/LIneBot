@@ -248,27 +248,6 @@ def handle_message(event):
                                     label='志鈞哥',
                                     text='志鈞哥'
                                 )
-                            ),
-                            ImageCarouselColumn(
-                                image_url='http://pic.pimg.tw/peace543/1371744369-3823290642.jpg',
-                                action=MessageTemplateAction(
-                                    label='小妹錯了',
-                                    text='小妹錯了'
-                                )
-                            ),
-                            ImageCarouselColumn(
-                                image_url='http://img.ltn.com.tw/Upload/ent/page/800/2014/06/03/phpgJHXH4.jpg',
-                                action=MessageTemplateAction(
-                                    label='只好露出',
-                                    text='只好露出'
-                                )
-                            ),
-                            ImageCarouselColumn(
-                                image_url='http://i.imgur.com/Iw3jEQ4.jpg',
-                                action=MessageTemplateAction(
-                                    label='胸部',
-                                    text='胸部'
-                                )
                             )
                         ]
                     )
