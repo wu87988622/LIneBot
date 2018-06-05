@@ -146,11 +146,10 @@ def callback():
 def handle_sticker_message(event):
     packageId = event.message.package_id
     reply = event.reply_token
-    for case in packageId:
-        if case('9600'):
-            sendMsg = TextSendMessage(text='雞掰醜兔子貼圖')
-            line_bot_api.reply_message(reply, sendMsg)
-            break
+    if packageId == '9600':
+        sendMsg = TextSendMessage(text='雞掰醜兔子貼圖')
+        line_bot_api.reply_message(reply, sendMsg)
+
 
 
 @handler.add(MessageEvent, message=TextMessage)
