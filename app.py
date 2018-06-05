@@ -265,7 +265,8 @@ def handle_message(event):
                                     text='postback text2',
                                     data='action=buy&itemid=3'
                                 )
-                            ), ImageCarouselColumn(
+                            ),
+                            ImageCarouselColumn(
                                 image_url='http://i.imgur.com/Iw3jEQ4.jpg',
                                 action=PostbackTemplateAction(
                                     label='胸部',
