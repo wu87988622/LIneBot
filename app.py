@@ -143,7 +143,7 @@ def callback():
     return 'OK'
 
 
-@handler.add(MessageEvent, message=StickerSendMessage)
+@handler.add(MessageEvent, MessageEvent.message.type == 'sticker')
 def handle_sticker_message(event):
     packageId = event.message.package_id
     reply = event.reply_token
