@@ -243,35 +243,27 @@ def handle_message(event):
                     template=ImageCarouselTemplate(
                         columns=[
                             ImageCarouselColumn(
-                                image_url='https://drive.google.com/file/d/11YjCTILHGXG01yHmNES8Owo5iMrYfH6d/preview',
+                                image_url='http://i.imgur.com/tmlKy.jpg',
                                 action=PostbackTemplateAction(
-                                    label='postback1',
-                                    text='postback text1',
-                                    data='action=buy&itemid=1'
+                                    label='志鈞哥'
                                 )
                             ),
                             ImageCarouselColumn(
-                                image_url='https://drive.google.com/open?id=14gcSVbXzX22HdrEe9y4tIEEgWPZR45TY',
+                                image_url='http://pic.pimg.tw/peace543/1371744369-3823290642.jpg',
                                 action=PostbackTemplateAction(
-                                    label='postback2',
-                                    text='postback text2',
-                                    data='action=buy&itemid=2'
+                                    label='小弟錯了'
                                 )
                             ),
                             ImageCarouselColumn(
-                                image_url='https://drive.google.com/open?id=1t45aZy4GwCTh9Lmoo9xILLRa4-4eLp1A',
+                                image_url='http://img.ltn.com.tw/Upload/ent/page/800/2014/06/03/phpgJHXH4.jpg',
                                 action=PostbackTemplateAction(
-                                    label='postback3',
-                                    text='postback text2',
-                                    data='action=buy&itemid=3'
+                                    label='只好露出'
                                 )
                             ),
                             ImageCarouselColumn(
-                                image_url='https://drive.google.com/open?id=1Fnk4LDrslEcKdvpuuuzzikzlcjWhV_7a',
+                                image_url='http://i.imgur.com/Iw3jEQ4.jpg',
                                 action=PostbackTemplateAction(
-                                    label='postback3',
-                                    text='postback text2',
-                                    data='action=buy&itemid=4'
+                                    label='胸部'
                                 )
                             )
                         ]
