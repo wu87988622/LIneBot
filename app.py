@@ -243,7 +243,7 @@ def handle_message(event):
                     template=ImageCarouselTemplate(
                         columns=[
                             ImageCarouselColumn(
-                                image_url='https://drive.google.com/open?id=11YjCTILHGXG01yHmNES8Owo5iMrYfH6d',
+                                image_url='https://drive.google.com/file/d/11YjCTILHGXG01yHmNES8Owo5iMrYfH6d/preview',
                                 action=PostbackTemplateAction(
                                     label='postback1',
                                     text='postback text1',
