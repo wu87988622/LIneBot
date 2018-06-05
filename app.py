@@ -8,7 +8,7 @@ from switch import switch
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 
-from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage, VideoSendMessage, TemplateSendMessage, MessageTemplateAction, ImageCarouselTemplate, ImageCarouselColumn
+from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage, VideoSendMessage, TemplateSendMessage, PostbackTemplateAction, ImageCarouselTemplate, ImageCarouselColumn
 
 import requests
 
@@ -244,30 +244,33 @@ def handle_message(event):
                         columns=[
                             ImageCarouselColumn(
                                 image_url='http://i.imgur.com/tmlKy.jpg',
-                                action=MessageTemplateAction(
+                                action=PostbackTemplateAction(
                                     label='志鈞哥',
-                                    text='志鈞哥'
+                                    text='',
+                                    data='action=buy&itemid=1'
                                 )
                             ),
                             ImageCarouselColumn(
                                 image_url='http://pic.pimg.tw/peace543/1371744369-3823290642.jpg',
-                                action=MessageTemplateAction(
+                                action=PostbackTemplateAction(
                                     label='小妹錯了',
-                                    text='小妹錯了'
+                                    text='postback text2',
+                                    data='action=buy&itemid=1'
                                 )
                             ),
                             ImageCarouselColumn(
                                 image_url='http://img.ltn.com.tw/Upload/ent/page/800/2014/06/03/phpgJHXH4.jpg',
-                                action=MessageTemplateAction(
+                                action=PostbackTemplateAction(
                                     label='只好露出',
-                                    text='只好露出'
+                                    text='postback text2',
+                                    data='action=buy&itemid=1'
                                 )
-                            ),
-                            ImageCarouselColumn(
+                            ), ImageCarouselColumn(
                                 image_url='http://i.imgur.com/Iw3jEQ4.jpg',
-                                action=MessageTemplateAction(
+                                action=PostbackTemplateAction(
                                     label='胸部',
-                                    text='胸部'
+                                    text='postback text2',
+                                    data='action=buy&itemid=1'
                                 )
                             )
                         ]
