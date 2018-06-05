@@ -146,7 +146,7 @@ def callback():
 def handle_sticker_message(event):
     packageId = event.message.package_id
     reply = event.reply_token
-    if packageId == '4587':
+    if packageId == '4587' or packageId == '1036951':
         sendMsg = TextSendMessage(text='雞掰醜兔子貼圖')
         line_bot_api.reply_message(reply, sendMsg)
 
