@@ -151,7 +151,6 @@ def handle_sticker_message(event):
         line_bot_api.reply_message(reply, sendMsg)
 
 
-
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = str(event.message.text)
