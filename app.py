@@ -144,7 +144,7 @@ def callback():
 
 
 @handler.add(MessageEvent,  message='sticker')
-def handle_message(event):
+def handle_sticker_message(event):
     packageId = event.message.package_id
     reply = event.reply_token
     for case in packageId:
