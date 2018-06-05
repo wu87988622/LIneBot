@@ -8,7 +8,7 @@ from switch import switch
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 
-from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage, VideoSendMessage
+from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage, VideoSendMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn, PostbackTemplateAction, MessageTemplateAction, URITemplateAction
 
 import requests
 
@@ -237,7 +237,94 @@ def handle_message(event):
             if event.source.user_id == 'U96e561374b413379c8fddc22ed185e9e':
                 sendMsg = TextSendMessage(text='歷史不是捏造就能改變')
             if event.source.user_id == 'Ud272182402cd7a29ad48a1a68d924eee':
-                sendMsg = TextSendMessage(text='Q哥 你頭髮世界直 抱歉')
+                #sendMsg = TextSendMessage(text='Q哥 你頭髮世界直 抱歉')
+                sendMsg = TemplateSendMessage(
+                    alt_text='目錄 template',
+                    template=CarouselTemplate(
+                        columns=[
+                            CarouselColumn(
+                                thumbnail_image_url='https://drive.google.com/open?id=11YjCTILHGXG01yHmNES8Owo5iMrYfH6d',
+                                title='this is menu1',
+                                text='description1',
+                                actions=[
+                                    PostbackTemplateAction(
+                                        label='postback1',
+                                        text='postback text1',
+                                        data='action=buy&itemid=1'
+                                    ),
+                                    MessageTemplateAction(
+                                        label='message1',
+                                        text='message text1'
+                                    ),
+                                    URITemplateAction(
+                                        label='uri1',
+                                        uri='網址'
+                                    )
+                                ]
+                            ),
+                            CarouselColumn(
+                                thumbnail_image_url='https://drive.google.com/open?id=14gcSVbXzX22HdrEe9y4tIEEgWPZR45TY',
+                                title='this is menu2',
+                                text='description2',
+                                actions=[
+                                    PostbackTemplateAction(
+                                        label='postback2',
+                                        text='postback text2',
+                                        data='action=buy&itemid=2'
+                                    ),
+                                    MessageTemplateAction(
+                                        label='message2',
+                                        text='message text2'
+                                    ),
+                                    URITemplateAction(
+                                        label='連結2',
+                                        uri='網址'
+                                    )
+                                ]
+                            ),
+                            CarouselColumn(
+                                thumbnail_image_url='https://drive.google.com/open?id=1t45aZy4GwCTh9Lmoo9xILLRa4-4eLp1A',
+                                title='this is menu2',
+                                text='description2',
+                                actions=[
+                                    PostbackTemplateAction(
+                                        label='postback2',
+                                        text='postback text2',
+                                        data='action=buy&itemid=2'
+                                    ),
+                                    MessageTemplateAction(
+                                        label='message2',
+                                        text='message text2'
+                                    ),
+                                    URITemplateAction(
+                                        label='連結2',
+                                        uri='網址'
+                                    )
+                                ]
+                            ),
+                            CarouselColumn(
+                                thumbnail_image_url='https://drive.google.com/open?id=1Fnk4LDrslEcKdvpuuuzzikzlcjWhV_7a',
+                                title='this is menu2',
+                                text='description2',
+                                actions=[
+                                    PostbackTemplateAction(
+                                        label='postback2',
+                                        text='postback text2',
+                                        data='action=buy&itemid=2'
+                                    ),
+                                    MessageTemplateAction(
+                                        label='message2',
+                                        text='message text2'
+                                    ),
+                                    URITemplateAction(
+                                        label='連結2',
+                                        uri='網址'
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+                )
             if event.source.user_id == 'U0677c83831ba745c15b5bd68e79f7d12':
                 sendMsg = TextSendMessage(text='哲哥 抱歉 你水冷最猛')
             if event.source.user_id == 'Ua6e5cc1dc6fbeaca3f6db3f220c2782a':
