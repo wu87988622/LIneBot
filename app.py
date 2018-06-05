@@ -187,6 +187,10 @@ def handle_message(event):
     if message.find('幹') != -1:
         sendMsg = TextSendMessage(text='I\'m Groot')
         line_bot_api.reply_message(event.reply_token, sendMsg)
+    if event.message.type == 'sticker':
+        if event.message.package_id == '9600':
+            sendMsg = TextSendMessage(text='雞掰醜兔子貼圖')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
     for case in switch(message):
         if case('貼圖'):
             sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
