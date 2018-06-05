@@ -246,7 +246,7 @@ def handle_message(event):
                                 image_url='http://i.imgur.com/tmlKy.jpg',
                                 action=PostbackTemplateAction(
                                     label='志鈞哥',
-                                    text='',
+                                    text='原諒你',
                                     data='action=buy&itemid=1'
                                 )
                             ),
@@ -255,7 +255,7 @@ def handle_message(event):
                                 action=PostbackTemplateAction(
                                     label='小妹錯了',
                                     text='postback text2',
-                                    data='action=buy&itemid=1'
+                                    data='action=buy&itemid=2'
                                 )
                             ),
                             ImageCarouselColumn(
@@ -263,14 +263,14 @@ def handle_message(event):
                                 action=PostbackTemplateAction(
                                     label='只好露出',
                                     text='postback text2',
-                                    data='action=buy&itemid=1'
+                                    data='action=buy&itemid=3'
                                 )
                             ), ImageCarouselColumn(
                                 image_url='http://i.imgur.com/Iw3jEQ4.jpg',
                                 action=PostbackTemplateAction(
                                     label='胸部',
                                     text='postback text2',
-                                    data='action=buy&itemid=1'
+                                    data='action=buy&itemid=4'
                                 )
                             )
                         ]
