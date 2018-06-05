@@ -129,7 +129,7 @@ def callback():
 
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
-
+    logging.info(signature)
     # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
@@ -143,7 +143,7 @@ def callback():
     return 'OK'
 
 
-@handler.add(MessageEvent,  message='sticker')
+@handler.add(MessageEvent,  message=StickerSendMessage)
 def handle_sticker_message(event):
     packageId = event.message.package_id
     reply = event.reply_token
