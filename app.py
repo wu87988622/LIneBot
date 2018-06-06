@@ -245,8 +245,7 @@ def handle_message(event):
                             ImageCarouselColumn(
                                 image_url='https://lh3.google.com/u/0/d/1Y6GdAGeCzHnQvXuAxn0JyD1FyT2iq7zW=w1920-h917-iv1',
                                 action=MessageTemplateAction(
-                                    label='志鈞哥',
-                                    text=''
+                                    label='志鈞哥'
                                 )
                             )
                         ]
