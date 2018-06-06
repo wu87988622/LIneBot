@@ -237,7 +237,10 @@ def handle_message(event):
             if event.source.user_id == 'U96e561374b413379c8fddc22ed185e9e':
                 sendMsg = TextSendMessage(text='歷史不是捏造就能改變')
             if event.source.user_id == 'Ud272182402cd7a29ad48a1a68d924eee':
-                #sendMsg = TextSendMessage(text='Q哥 你頭髮世界直 抱歉')
+                sendMsg = TextSendMessage(text='Q哥 你頭髮世界直 抱歉')
+            if event.source.user_id == 'U0677c83831ba745c15b5bd68e79f7d12':
+                sendMsg = TextSendMessage(text='哲哥 抱歉 你水冷最猛')
+            if event.source.user_id == 'Ua6e5cc1dc6fbeaca3f6db3f220c2782a':
                 sendMsg = TemplateSendMessage(
                     alt_text='Image Carousel template',
                     template=ImageCarouselTemplate(
@@ -273,10 +276,6 @@ def handle_message(event):
                         ]
                     )
                 )
-            if event.source.user_id == 'U0677c83831ba745c15b5bd68e79f7d12':
-                sendMsg = TextSendMessage(text='哲哥 抱歉 你水冷最猛')
-            if event.source.user_id == 'Ua6e5cc1dc6fbeaca3f6db3f220c2782a':
-                sendMsg = TextSendMessage(text='大哥抱歉\n我應該叫您的本名\n您是如來佛祖玉皇大帝觀音菩薩指定取西經特派使者花果山水濂洞美猴王齊天大聖黃志鈞\n帥到掉渣\n我的膝蓋你收下')
             if event.source.user_id == 'U47d7743cf2cae1d0c524c03cdca81775':
                 sendMsg = TextSendMessage(text='抱歉 你也是大哥\n葉子媚是個賢妻良母，兩百塊最聰明，戈巴契夫頭髮最長，海珊總統最不愛打仗')
             line_bot_api.reply_message(event.reply_token, sendMsg)
