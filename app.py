@@ -243,19 +243,11 @@ def handle_message(event):
                     template=ImageCarouselTemplate(
                         columns=[
                             ImageCarouselColumn(
-                                image_url='http://i.imgur.com/tmlKy.jpg',
+                                image_url='https://lh3.google.com/u/0/d/1Y6GdAGeCzHnQvXuAxn0JyD1FyT2iq7zW=w1920-h917-iv1',
                                 action=PostbackTemplateAction(
                                     label='postback1',
                                     text='postback text1',
                                     data='action=buy&itemid=1'
-                                )
-                            ),
-                            ImageCarouselColumn(
-                                image_url='http://pic.pimg.tw/peace543/1371744369-3823290642.jpg',
-                                action=PostbackTemplateAction(
-                                    label='postback2',
-                                    text='postback text2',
-                                    data='action=buy&itemid=2'
                                 )
                             )
                         ]
