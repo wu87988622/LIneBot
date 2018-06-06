@@ -8,7 +8,7 @@ from switch import switch
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 
-from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage, VideoSendMessage, TemplateSendMessage, PostbackTemplateAction, ImageCarouselTemplate, ImageCarouselColumn
+from linebot.models import TextMessage, MessageEvent, TextSendMessage, StickerSendMessage, ImageSendMessage, VideoSendMessage, TemplateSendMessage, MessageTemplateAction, ImageCarouselTemplate, ImageCarouselColumn
 
 import requests
 
@@ -244,10 +244,9 @@ def handle_message(event):
                         columns=[
                             ImageCarouselColumn(
                                 image_url='https://lh3.google.com/u/0/d/1Y6GdAGeCzHnQvXuAxn0JyD1FyT2iq7zW=w1920-h917-iv1',
-                                action=PostbackTemplateAction(
-                                    label='postback1',
-                                    text='postback text1',
-                                    data='action=buy&itemid=1'
+                                action=MessageTemplateAction(
+                                    label='志鈞哥',
+                                    text='志鈞哥'
                                 )
                             )
                         ]
