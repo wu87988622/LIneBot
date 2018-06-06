@@ -243,7 +243,7 @@ def handle_message(event):
                     template=ImageCarouselTemplate(
                         columns=[
                             ImageCarouselColumn(
-                                image_url='https://example.com/item1.jpg',
+                                image_url='http://i.imgur.com/tmlKy.jpg',
                                 action=PostbackTemplateAction(
                                     label='postback1',
                                     text='postback text1',
@@ -251,7 +251,7 @@ def handle_message(event):
                                 )
                             ),
                             ImageCarouselColumn(
-                                image_url='https://example.com/item2.jpg',
+                                image_url='http://pic.pimg.tw/peace543/1371744369-3823290642.jpg',
                                 action=PostbackTemplateAction(
                                     label='postback2',
                                     text='postback text2',
