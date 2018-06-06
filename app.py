@@ -239,39 +239,23 @@ def handle_message(event):
             if event.source.user_id == 'Ud272182402cd7a29ad48a1a68d924eee':
                 #sendMsg = TextSendMessage(text='Q哥 你頭髮世界直 抱歉')
                 sendMsg = TemplateSendMessage(
-                    alt_text='Image Carousel template',
+                    alt_text='ImageCarousel template',
                     template=ImageCarouselTemplate(
                         columns=[
                             ImageCarouselColumn(
-                                image_url='http://i.imgur.com/tmlKy.jpg',
+                                image_url='https://example.com/item1.jpg',
                                 action=PostbackTemplateAction(
-                                    label='志鈞哥',
-                                    text='原諒你',
+                                    label='postback1',
+                                    text='postback text1',
                                     data='action=buy&itemid=1'
                                 )
                             ),
                             ImageCarouselColumn(
-                                image_url='http://pic.pimg.tw/peace543/1371744369-3823290642.jpg',
+                                image_url='https://example.com/item2.jpg',
                                 action=PostbackTemplateAction(
-                                    label='小妹錯了',
+                                    label='postback2',
                                     text='postback text2',
                                     data='action=buy&itemid=2'
-                                )
-                            ),
-                            ImageCarouselColumn(
-                                image_url='http://img.ltn.com.tw/Upload/ent/page/800/2014/06/03/phpgJHXH4.jpg',
-                                action=PostbackTemplateAction(
-                                    label='只好露出',
-                                    text='postback text2',
-                                    data='action=buy&itemid=3'
-                                )
-                            ),
-                            ImageCarouselColumn(
-                                image_url='http://i.imgur.com/Iw3jEQ4.jpg',
-                                action=PostbackTemplateAction(
-                                    label='胸部',
-                                    text='postback text2',
-                                    data='action=buy&itemid=4'
                                 )
                             )
                         ]
