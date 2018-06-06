@@ -246,28 +246,28 @@ def handle_message(event):
                     template=ImageCarouselTemplate(
                         columns=[
                             ImageCarouselColumn(
-                                image_url='https://lh3.google.com/u/0/d/1Y6GdAGeCzHnQvXuAxn0JyD1FyT2iq7zW=w1920-h917-iv1',
+                                image_url='https://lh3.googleusercontent.com/JNeGjyE0WkOjxfjFMAVD8PXk2J_bIf4F-rixyZ73sa53CgkS-kReZ81IBeJVD54w3VfQu8DWvQa4SYlb2dBcwBJf6bF4JkVxijjbjux8ZivBJ9UMLdrDfIWsqQp37xiBtIGpORl9gdXUVEctK9P-GBYSG-Y-ElCh92i_0gn8duB3ya8ki0sQlqzx5eyn4o0vZOlyeYyjo8BoUp9ZRjOjMJQ1RdGh8765jjXGd3wBNO1ahlHjDdETAKSJOpWNQoUo9OQ_JjdePpbNyKhqL891bJzv9HeJ7wL7BiuP_dEOupKsm3CiFW-X783ryt3wQt2sI4bTYLRmys0sgWFgjp_s8-dBFGgeGNXyDeGc4Cbqd34WXn_j5udAePDSWHexc1Oc7CSB9k5TCqLoTM84tlhA4yRjtfsE-L-oqWcG2vU2W6LD-F0_rWF_AO7JF4PVisnQh1K7IxOYOdI0gjlyUXkRDhDQr3T3Noky85Hqe1DcyQVXd0LnfPvfhFW13eCNGsjHPXX4sn1siSH_JdDvJiMsxTA1ZgPEPch0vR75h8EllFUgSskY5Cjs93065zLWxwih=w1920-h917',
                                 action=MessageTemplateAction(
                                     label='志鈞哥',
                                     text='我要幹到你口吐白沫'
                                 )
                             ),
                             ImageCarouselColumn(
-                                image_url='https://lh3.google.com/u/0/d/1GJFBJy5MN7FeLoiKOnDbGyefNWGSXNVP=w1337-h855-iv1',
+                                image_url='https://lh3.googleusercontent.com/5qaR5cpA1IfeJX3PizOYAz5yfVQtrYw4SAgE5WTDg7UYnwrAqZ7-8IAo2RJAZ3mlJPob3VgtfqLBBpQGsKi_03njhJse_X-w7YqKMv_H1-5KW3178X9JCLVE_npJUeYuTABPLXxcMvCZKTuu-1hFcZlj9BHhom2eS_mHx0llcykcS5URO8pvzKeP7loj9E9zYMhTZlRzj3JUSAPUXsUoTtHDakJf8BhOACapLzJQkITqXTBtmPV5V75PXOjZdou_XTrSBumGA8d0gw4L-yljs1O-bAuXry4YdwrIBjztmnReUzBtJbEUyeIcbXIAOF3DlwMD44nb1FCbd90evljhcO2vu0-NWK9RyaIT5pe6dXitbTNH_eVfQ2s73J538QqLCMFzm6eyLGG9KqP-IKAg4_Z0BK3z1r41Za83GX9Wsg-zWzhZNHsvQV_xhBWPHjOJdZvAwcWzrMtfZ8PtKPGetMEIKp4KGOkQM23iyNlc0dHXFMAFjUOkMlOFrPpcjKE8-t_qYea6-Jq70ZIh0eQCSo6QZfZMro8r941hTE5CJsNlm4Ie01tAoSjto9baDl7c=w1337-h855',
                                 action=MessageTemplateAction(
                                     label='小妹錯了',
                                     text='我要幹到你口吐白沫'
                                 )
                             ),
                             ImageCarouselColumn(
-                                image_url='https://lh3.google.com/u/0/d/1YY3u0m1qlA8ty4fdgKninPplChKVF5d-=w1337-h855-iv1',
+                                image_url='https://lh3.googleusercontent.com/s9gXgnRq4wBIuZuuna4qRGeJYeVSrMo5KENucRpHFmOXsoQzPMcKOoOwXwhSixhLsirXuWhpubcC2nvjJZn_dJhKbmkAUThovAvdv0ob-Da2X0jjwueC4m5X6BTfa60gGVYivOhBoWkdPbptX6k34us568uXW3X6U3LOnQ6CPnVkWSIe-wd-gm7cppnX2dWLyR7Gao2Bo-Q6lK8kVp9vbxlDdkHWnE-4EPPM1n7VdUTLLswNchHiBVbymBt3D-s6RkF-_bzC8WiLyQZV-RXwjzxQ4Hkc_rf36NGYsFpFWV9LxNNWOhGn3NRcOwaesp5BAunDnUbcX1eReoMP3syX2DimhioZr08JWhP1MGx6J2OJiQ8joOip4xqpZgEp0qb1MXvdZDIrFJf0OWu4ZKYE40VYAuZf_Ubg7NBOkIv9g4poDR5ShrdUWUDwgz0jSPb7Ln6UWtJzYsyH5yZP5oWScYzhxHBy1rWXXO0FWyx0s_1vXURHyU3KTkiFqM0XeGp5sEtGrgpeJuwCR0RGrTk3NeZYlQwhsOpPJ6lAf51AUwN4rFe171HEVS8b6V6Dhln-=w1337-h855',
                                 action=MessageTemplateAction(
                                     label='只好露出',
                                     text='我要幹到你口吐白沫'
                                 )
                             ),
                             ImageCarouselColumn(
-                                image_url='https://lh3.google.com/u/0/d/1LQvtuW5hy686haQ_EfH4o5rnbL0GMniK=w1337-h855-iv1',
+                                image_url='https://lh3.googleusercontent.com/glFSI4c-N9NmAaBejdv3diJucS88goyOpot-tlZ1Kzug0pE8deJGVPqKFNvbj11OuiQVoCkyllNIx6QwSQMDABZtx-F2DFJiTlamQ409c5ra4DUzVOnlAB9feXtKm1QAw4hDBBZuEa9ogkoMkJEnWcPJzDOtza7ECkilOBoue3D0T5Zn-EmVjC6Efa64UYz_ZymYeJhraMcZ6asAQw2Cj530iLtbR54HDyTDp9VH0L9tGxnl4RtjUq_9k6iQO9RfP-VcmlUZmeRzlsC7W23ojzvzDN727jFQX-A79_YA99epqJxe4KaTq6esav53xBhisEkjdRF8NQn2WwPS77reoNElTVNaUPpdjkeTS_CWos7vc6PBuLMki8vIEtFtH0PVlkh5b5jl8dnHSlbY896tF2XpZRL2vhTi1D2ZY6z04GqJqemYgbwbVM6hvbCFry8k-bivwGfF4mR9eOhiS2idpgRxn8LdlkXg62E9ERt3v1Sph9tFiyf1ciEU6dmJguO9SKlGBD7r_W012hg3JcCTOMrn-dF0mRoKbX9KVQETB3-BOp84w6LBPLwDTu9k9ahW=w1337-h855',
                                 action=MessageTemplateAction(
                                     label='胸部',
                                     text='我要幹到你口吐白沫'
@@ -276,6 +276,7 @@ def handle_message(event):
                         ]
                     )
                 )
+
             if event.source.user_id == 'U47d7743cf2cae1d0c524c03cdca81775':
                 sendMsg = TextSendMessage(text='抱歉 你也是大哥\n葉子媚是個賢妻良母，兩百塊最聰明，戈巴契夫頭髮最長，海珊總統最不愛打仗')
             line_bot_api.reply_message(event.reply_token, sendMsg)
