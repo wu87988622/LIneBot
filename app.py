@@ -239,13 +239,35 @@ def handle_message(event):
             if event.source.user_id == 'Ud272182402cd7a29ad48a1a68d924eee':
                 #sendMsg = TextSendMessage(text='Q哥 你頭髮世界直 抱歉')
                 sendMsg = TemplateSendMessage(
-                    alt_text='ImageCarousel template',
+                    alt_text='Image Carousel template',
                     template=ImageCarouselTemplate(
                         columns=[
                             ImageCarouselColumn(
                                 image_url='https://lh3.google.com/u/0/d/1Y6GdAGeCzHnQvXuAxn0JyD1FyT2iq7zW=w1920-h917-iv1',
                                 action=MessageTemplateAction(
-                                    label='志鈞哥'
+                                    label='志鈞哥',
+                                    text='我要幹到你口吐白沫'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url='https://lh3.google.com/u/0/d/1GJFBJy5MN7FeLoiKOnDbGyefNWGSXNVP=w1337-h855-iv1',
+                                action=MessageTemplateAction(
+                                    label='小妹錯了',
+                                    text='我要幹到你口吐白沫'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url='https://lh3.google.com/u/0/d/1YY3u0m1qlA8ty4fdgKninPplChKVF5d-=w1337-h855-iv1',
+                                action=MessageTemplateAction(
+                                    label='只好露出',
+                                    text='我要幹到你口吐白沫'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url='https://lh3.google.com/u/0/d/1LQvtuW5hy686haQ_EfH4o5rnbL0GMniK=w1337-h855-iv1',
+                                action=MessageTemplateAction(
+                                    label='胸部',
+                                    text='我要幹到你口吐白沫'
                                 )
                             )
                         ]
