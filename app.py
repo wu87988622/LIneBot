@@ -1,4 +1,4 @@
-from flask import Flask, request, abort
+from flask import Flask, request, abort, render_template
 import logging
 import json
 import lineJson
@@ -103,6 +103,11 @@ def get_google_image(text):
             img = imgs['data-src']
     logging.info(img)
     return img
+
+
+@app.route('/img', methods=['GET'])
+def img():
+    return render_template('img.html')
 
 
 @app.route("/ex", methods=['POST'])
