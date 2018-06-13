@@ -192,9 +192,9 @@ def handle_message(event):
     #if message.find('在') != -1:
     #    sendMsg = TextSendMessage(text='再拉 幹')
     #    line_bot_api.reply_message(event.reply_token, sendMsg)
-    if message.find('幹') != -1:
-        sendMsg = TextSendMessage(text='I\'m Groot')
-        line_bot_api.reply_message(event.reply_token, sendMsg)
+    #if message.find('幹') != -1:
+    #    sendMsg = TextSendMessage(text='I\'m Groot')
+    #    line_bot_api.reply_message(event.reply_token, sendMsg)
     for case in switch(message):
         if case('貼圖'):
             sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
