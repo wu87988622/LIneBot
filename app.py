@@ -295,9 +295,11 @@ def handle_message(event):
         if case('=='):
             sendMsg = TextSendMessage(text='你以為說==就沒事了嗎?')
             line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
         if case('0.0'):
             sendMsg = TextSendMessage(text='靠杯喔')
             line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
