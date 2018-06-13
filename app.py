@@ -293,9 +293,11 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, sendMsg)
             break
         if case('=='):
-            sendMsg = TextSendMessage(text='你以為說==就沒了嗎?')
+            sendMsg = TextSendMessage(text='你以為說==就沒事了嗎?')
             line_bot_api.reply_message(event.reply_token, sendMsg)
-
+        if case('0.0'):
+            sendMsg = StickerSendMessage(package_id='2000000', sticker_id='48180')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
