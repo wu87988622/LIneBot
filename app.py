@@ -195,6 +195,7 @@ def handle_message(event):
     #if message.find('幹') != -1:
     #    sendMsg = TextSendMessage(text='I\'m Groot')
     #    line_bot_api.reply_message(event.reply_token, sendMsg)
+
     for case in switch(message):
         if case('貼圖'):
             sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
@@ -291,6 +292,9 @@ def handle_message(event):
                 sendMsg = TextSendMessage(text='事實不是說謊就能帶過')
             line_bot_api.reply_message(event.reply_token, sendMsg)
             break
+        if case('=='):
+            sendMsg = TextSendMessage(text='你以為說==就沒了嗎?')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
 
 
 if __name__ == "__main__":
