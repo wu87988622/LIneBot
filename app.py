@@ -296,7 +296,7 @@ def handle_message(event):
             sendMsg = TextSendMessage(text='你以為說==就沒事了嗎?')
             line_bot_api.reply_message(event.reply_token, sendMsg)
         if case('0.0'):
-            sendMsg = StickerSendMessage(package_id='2000000', sticker_id='48180')
+            sendMsg = TextSendMessage(text='靠杯喔')
             line_bot_api.reply_message(event.reply_token, sendMsg)
 
 if __name__ == "__main__":
