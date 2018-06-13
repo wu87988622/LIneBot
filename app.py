@@ -101,13 +101,16 @@ def get_google_image(text):
     for imgs in bfsoup.find_all('img'):
         if imgs.has_attr('data-src'):
             img = imgs['data-src']
-    logging.info(img)
+    logging.info(img);
     return img
 
 
-@app.route('/img', methods=['GET'])
-def img():
-    return render_template('img.html')
+@app.route('/post', methods=['GET', 'POST'])
+def post():
+    logging.basicConfig(level=logging.INFO)
+    body = request.get_data(as_text=True)
+    app.logger.info(body)
+    return render_template('post.html')
 
 
 @app.route("/ex", methods=['POST'])
@@ -203,10 +206,10 @@ def handle_message(event):
     #if message.find('幹') != -1:
     #    sendMsg = TextSendMessage(text='I\'m Groot')
     #    line_bot_api.reply_message(event.reply_token, sendMsg)
-    if message.find('484') != -1:
-       imgurl = line_bot_url + '/484.jpg'
-       sendMsg = ImageSendMessage(preview_image_url=imgurl, original_content_url=imgurl)
-       line_bot_api.reply_message(event.reply_token, sendMsg)
+    # if message.find('484') != -1:
+    #    imgurl = line_bot_url + '/484.jpg'
+    #    sendMsg = ImageSendMessage(preview_image_url=imgurl, original_content_url=imgurl)
+    #    line_bot_api.reply_message(event.reply_token, sendMsg)
 
     for case in switch(message):
         if case('貼圖'):
