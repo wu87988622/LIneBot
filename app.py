@@ -197,7 +197,7 @@ def handle_message(event):
     #    line_bot_api.reply_message(event.reply_token, sendMsg)
     if message.find('484') != -1:
         imgurl='https://lh6.googleusercontent.com/899QWPLNxIQvhW4Qkiyq_U6uM_qzDfdQubAZqMMh-Qmnt1htP4kSk-AHBhyZEBXw6Vo3HbEKRmVgaYTi9E2p=w1036-h949'
-        sendMsg = ImageSendMessage(preview_image_url=imgUrl, original_content_url=imgUrl)
+        sendMsg = ImageSendMessage(preview_image_url=imgurl, original_content_url=imgurl)
         line_bot_api.reply_message(event.reply_token, sendMsg)
 
     for case in switch(message):
