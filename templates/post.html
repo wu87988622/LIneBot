@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>POST</title>
+		<!-- Styles -->
+		<!-- Bootstrap CSS -->
+		<link type="text/css" href="{{url_for('static', filename='style-175.css')}}" rel="stylesheet">
+		<!-- Main CSS -->
+		<link type="text/css" href="{{url_for('static', filename='bootstrap.min.css')}}" rel="stylesheet">
+	</head>
+	<body>
+		<!-- UI - X Starts -->
+		<div class="ui-175">
+			<div class="container">
+				<div class="row">
+					<div>
+						<!-- Outer Starts -->
+						<div class="ui-outer">
+							<!-- Form -->
+							<div class="ui-form">
+								<!-- Heading -->
+								<h4>POST</h4>
+								<!-- Form -->
+								<form class="form" action="/post" method="post">
+
+									<div class="form-group">
+										<!-- html -->
+										 <textarea class="form-control" name="html" rows="10" cols="30" placeholder="公吿.............">{{ post }}</textarea>
+									</div>
+
+									<div class="form-group text-center">
+										<!-- submit -->
+										<button type="submit" class="btn btn-lblue">Post</button>
+									</div>
+								</form>
+							</div>
+						</div>
+						<!-- Outer Ends -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- UI - X Ends -->
+	<p>{{ tag }}</p>
+	<p>{{ table }}</p>
+	<p>{{ json }}</p>
+	</body>
+</html>
