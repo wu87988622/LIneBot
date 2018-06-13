@@ -304,6 +304,10 @@ def handle_message(event):
             sendMsg = TextSendMessage(text='靠杯喔')
             line_bot_api.reply_message(event.reply_token, sendMsg)
             break
+        if case('=_='):
+            sendMsg = TextSendMessage(text='神經病')
+            line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
