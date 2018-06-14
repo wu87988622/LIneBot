@@ -216,10 +216,10 @@ def handle_message(event):
     #if message.find('幹') != -1:
     #    sendMsg = TextSendMessage(text='I\'m Groot')
     #    line_bot_api.reply_message(event.reply_token, sendMsg)
-    # if message.find('484') != -1:
-    #    imgurl = line_bot_url + '/484.jpg'
-    #    sendMsg = ImageSendMessage(preview_image_url=imgurl, original_content_url=imgurl)
-    #    line_bot_api.reply_message(event.reply_token, sendMsg)
+    if message.find('484') != -1:
+       imgurl = line_bot_url + '/484.jpg'
+       sendMsg = ImageSendMessage(preview_image_url=imgurl, original_content_url=imgurl)
+       line_bot_api.reply_message(event.reply_token, sendMsg)
 
     for case in switch(message):
         if case('貼圖'):
