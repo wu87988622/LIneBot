@@ -371,6 +371,12 @@ def handle_message(event):
             sendMsg = TextSendMessage(text='神經病')
             line_bot_api.reply_message(event.reply_token, sendMsg)
             break
+        if case('對不起'):
+            if event.source.user_id == 'Ua6e5cc1dc6fbeaca3f6db3f220c2782a':
+                sendMsg = ImageSendMessage(preview_image_url=line_bot_url+'/saySorry.jpg',
+                                           original_content_url=line_bot_url+'/saySorry.jpg')
+                line_bot_api.reply_message(event.reply_token, sendMsg)
+            break
 
 
 if __name__ == "__main__":
