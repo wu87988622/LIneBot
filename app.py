@@ -107,10 +107,10 @@ def get_google_image(text):
 
 @app.route('/post', methods=['GET', 'POST'])
 def post():
-    logging.basicConfig(level=logging.INFO)
-    body = request.form['post']
-    app.logger.info(body)
     if request.method == 'POST':
+        logging.basicConfig(level=logging.INFO)
+        body = request.form['post']
+        app.logger.info(body)
         line_bot_api.push_message('Ud272182402cd7a29ad48a1a68d924eee', TextSendMessage(text=body))
         return 'OK'
     elif request.method == 'GET':
