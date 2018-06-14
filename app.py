@@ -110,10 +110,11 @@ def post():
     logging.basicConfig(level=logging.INFO)
     body = request.get_data(as_text=True)
     app.logger.info(body)
-    if body is not '':
-        line_bot_api.push_message('Ud272182402cd7a29ad48a1a68d924eee', TextSendMessage(text=body.post))
+    if request.methods == 'POST':
+        line_bot_api.push_message('Ud272182402cd7a29ad48a1a68d924eee', TextSendMessage(text=body))
         return 'OK'
-    return render_template('post.html')
+    elif request.methods == 'GET':
+        return render_template('post.html')
 
 
 @app.route("/ex", methods=['POST'])
