@@ -110,6 +110,7 @@ def post():
     logging.basicConfig(level=logging.INFO)
     body = request.get_data(as_text=True)
     app.logger.info(body)
+
     return render_template('post.html')
 
 
@@ -288,7 +289,49 @@ def handle_message(event):
                                     label='胸部',
                                     text='我要幹到你口吐白沫'
                                 )
-                            )
+                            ),
+                            ImageCarouselColumn(
+                                image_url=line_bot_url + '/sorry5.jpg',
+                                action=MessageTemplateAction(
+                                    label='胸部',
+                                    text='我要幹到你口吐白沫'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url=line_bot_url + '/sorry6.jpg',
+                                action=MessageTemplateAction(
+                                    label='胸部',
+                                    text='我要幹到你口吐白沫'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url=line_bot_url + '/sorry7.jpg',
+                                action=MessageTemplateAction(
+                                    label='胸部',
+                                    text='我要幹到你口吐白沫'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url=line_bot_url + '/sorry8.jpg',
+                                action=MessageTemplateAction(
+                                    label='胸部',
+                                    text='我要幹到你口吐白沫'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url=line_bot_url + '/sorry9.jpg',
+                                action=MessageTemplateAction(
+                                    label='胸部',
+                                    text='我要幹到你口吐白沫'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url=line_bot_url + '/sorry10.jpg',
+                                action=MessageTemplateAction(
+                                    label='胸部',
+                                    text='我要幹到你口吐白沫'
+                                )
+                            ),
                         ]
                     )
                 )
