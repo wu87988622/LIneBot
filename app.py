@@ -110,10 +110,10 @@ def post():
     logging.basicConfig(level=logging.INFO)
     body = request.form['post']
     app.logger.info(body)
-    if request.methods == 'POST':
+    if request.method == 'POST':
         line_bot_api.push_message('Ud272182402cd7a29ad48a1a68d924eee', TextSendMessage(text=body))
         return 'OK'
-    elif request.methods == 'GET':
+    elif request.method == 'GET':
         return render_template('post.html')
 
 
