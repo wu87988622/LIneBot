@@ -110,7 +110,7 @@ def post():
     logging.basicConfig(level=logging.INFO)
     body = request.get_data(as_text=True)
     app.logger.info(body)
-
+    line_bot_api.push_message('Ud272182402cd7a29ad48a1a68d924eee', TextSendMessage(text=body.post))
     return render_template('post.html')
 
 
