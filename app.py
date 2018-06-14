@@ -109,10 +109,16 @@ def get_google_image(text):
 def post():
     if request.method == 'POST':
         logging.basicConfig(level=logging.INFO)
-        body = request.get_data(as_test=True)
+        body = request.get_data(as_text=True)
         app.logger.info(body)
-        line_bot_api.push_message('Ud272182402cd7a29ad48a1a68d924eee', TextSendMessage(text=request.form['post']))
-        return 'OK'
+        lineID = ''
+        PostID = request.form['postID']
+        if PostID == '沒有機器人':
+            lineID = 'C9e7ba8ccf41711663d2f8b6e1d72a58f'
+        if PostID == '6人':
+            lineID = 'Rd2831e897921a807491f5ddb034366d3'
+        line_bot_api.push_message(lineID, TextSendMessage(text=request.form['post']))
+        return render_template('post.html')
     elif request.method == 'GET':
         return render_template('post.html')
 
