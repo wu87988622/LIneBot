@@ -100,6 +100,7 @@ def get_google_image(text):
     bfsoup = BeautifulSoup(html, 'lxml')
     for imgs in bfsoup.find_all('img'):
         if imgs.has_attr('id'):
+            logging.info(imgs)
             imgID = imgs['id']
             logging.info(imgID)
             script = bfsoup.find_all('script')[7].text
