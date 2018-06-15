@@ -106,7 +106,7 @@ def get_google_image(text):
                                                                                   '{var x=document.getElementById'
                                                                                   '(img[0]);if(x){x.src=img[1];}}})();')
             img = jsonStr[imgID]
-    logging.info(script);
+    logging.info(jsonStr);
     return img
 
 
