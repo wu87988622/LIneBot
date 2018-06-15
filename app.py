@@ -116,7 +116,7 @@ def get_google_image(text):
         #            break
         #    if img != '':
         #        break
-        if imgs.hasattr('data-src'):
+        if imgs.has_attr('data-src'):
             img = imgs['data-src']
         if img != '':
             break
