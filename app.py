@@ -101,6 +101,7 @@ def get_google_image(text):
     for imgs in bfsoup.find_all('img'):
         if imgs.has_attr('id'):
             imgID = imgs['id']
+            logging.info(imgID)
             script = bfsoup.find_all('script')[7].text
             jsonStr = script.replace('(function(){var data=', '').split(';for')[0]
             jsonStr = jsonStr.split(']\n]')[0]
@@ -112,7 +113,7 @@ def get_google_image(text):
                 if imgID in imgurl:
                     img = imgurl[imgID]
                     break
-    logging.info(img);
+    logging.info(img)
     return img
 
 
