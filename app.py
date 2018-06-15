@@ -99,7 +99,7 @@ def get_google_image(text):
     html = response.text
     bfsoup = BeautifulSoup(html, 'lxml')
     for imgs in bfsoup.find_all('img'):
-        if imgs.has_attr('class'):
+        '''if imgs.has_attr('class'):
             imgID = imgs['id']
             imgID = imgID[:-1]
             logging.info(imgID)
@@ -115,7 +115,11 @@ def get_google_image(text):
                     img = imgurl[imgID]
                     break
             if img != '':
-                break
+                break'''
+        if imgs.hasattr('data-src'):
+            img = imgs['data-src']
+        if img != '':
+            break
     logging.info(img)
     return img
 
