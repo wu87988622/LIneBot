@@ -100,8 +100,8 @@ def get_google_image(text):
     bfsoup = BeautifulSoup(html, 'lxml')
     for imgs in bfsoup.find_all('img'):
         if imgs.has_attr('class'):
-            logging.info(imgs)
             imgID = imgs['id']
+            imgID = imgID[:-1]
             logging.info(imgID)
             script = bfsoup.find_all('script')[7].text
             jsonStr = script.replace('(function(){var data=', '').split(';for')[0]
