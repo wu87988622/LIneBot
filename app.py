@@ -99,7 +99,7 @@ def get_google_image(text):
     html = response.text
     bfsoup = BeautifulSoup(html, 'lxml')
     for imgs in bfsoup.find_all('img'):
-        if imgs.has_attr('alt'):
+        if imgs.has_attr('id'):
             imgID = imgs['id']
             script = bfsoup.find_all('script')[7].text
 
