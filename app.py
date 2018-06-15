@@ -195,6 +195,12 @@ line_bot_url = 'https://itrilinebot.herokuapp.com/static'
 def handle_message(event):
     message = str(event.message.text)
     logging.info(message)
+    replyToken = event.reply_token
+    KKID = 'Ua6e5cc1dc6fbeaca3f6db3f220c2782a'
+    markID = 'U96e561374b413379c8fddc22ed185e9e'
+    DDID = 'U47d7743cf2cae1d0c524c03cdca81775'
+    QQID = 'Ud272182402cd7a29ad48a1a68d924eee'
+    d607ID = 'U0677c83831ba745c15b5bd68e79f7d12'
     if message.find('ig:') != -1:
         if message.find('http') != -1:
             url = message[3:]
@@ -212,7 +218,7 @@ def handle_message(event):
                 if len(sendMsg) < 5:
                     sendMsg.append(VideoSendMessage(original_content_url=mp4Url[0],
                                                     preview_image_url=mp4Url[1]))
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
         else:
             text = message[3:]
             imgUrls = get_ig_user(text)
@@ -220,15 +226,15 @@ def handle_message(event):
             for imgUrl in imgUrls:
                 logging.info(imgUrl)
                 sendMsg.append(ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl))
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
     if message.find('g:') != -1:
         gMsg = message[2:]
         imgUrl = get_google_image(gMsg)
         sendMsg = ImageSendMessage(original_content_url=imgUrl, preview_image_url=imgUrl)
-        line_bot_api.reply_message(event.reply_token, sendMsg)
+        line_bot_api.reply_message(replyToken, sendMsg)
     if message.find('治軍') != -1:
         sendMsg = TextSendMessage(text='志鈞拉 幹')
-        line_bot_api.reply_message(event.reply_token, sendMsg)
+        line_bot_api.reply_message(replyToken, sendMsg)
     #if message.find('在') != -1:
     #    sendMsg = TextSendMessage(text='再拉 幹')
     #    line_bot_api.reply_message(event.reply_token, sendMsg)
@@ -238,36 +244,36 @@ def handle_message(event):
     if message.find('484') != -1:
        imgurl = line_bot_url + '/484.jpg'
        sendMsg = ImageSendMessage(preview_image_url=imgurl, original_content_url=imgurl)
-       line_bot_api.reply_message(event.reply_token, sendMsg)
+       line_bot_api.reply_message(replyToken, sendMsg)
 
     for case in switch(message):
         if case('貼圖'):
             sendMsg = StickerSendMessage(package_id='1', sticker_id='15')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('打招呼'):
             sendMsg = TextSendMessage(text='志鈞哥，馬克哥 早安!!')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('ㄤ'):
             sendMsg = TextSendMessage(text='ㄤㄤ泥豪')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('叫大哥'):
             sendMsg = TextSendMessage(text='大哥好')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('這是什麼'):
             sendMsg = TextSendMessage(text='港幣！')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('我知道'):
             sendMsg = TextSendMessage(text='知道還問')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('我沒有資格問嗎'):
             sendMsg = TextSendMessage(text='有資格！有資格！有資格！')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('getid'):
             if event.source.type == 'user':
@@ -276,16 +282,16 @@ def handle_message(event):
                 sendMsg = TextSendMessage(text=event.source.group_id)
             elif event.source.type == 'room':
                 sendMsg = TextSendMessage(text=event.source.room_id)
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('道歉'):
-            if event.source.user_id == 'U96e561374b413379c8fddc22ed185e9e':
+            if event.source.user_id == markID:
                 sendMsg = TextSendMessage(text='歷史不是捏造就能改變')
-            if event.source.user_id == 'Ud272182402cd7a29ad48a1a68d924eee':
+            if event.source.user_id == QQID:
                 sendMsg = TextSendMessage(text='Q哥 你頭髮世界直 抱歉')
-            if event.source.user_id == 'U0677c83831ba745c15b5bd68e79f7d12':
+            if event.source.user_id == d607ID:
                 sendMsg = TextSendMessage(text='哲哥 抱歉 你水冷最猛')
-            if event.source.user_id == 'Ua6e5cc1dc6fbeaca3f6db3f220c2782a':
+            if event.source.user_id == KKID:
                 sendMsg = TemplateSendMessage(
                     alt_text='Image Carousel template',
                     template=ImageCarouselTemplate(
@@ -364,37 +370,37 @@ def handle_message(event):
                     )
                 )
 
-            if event.source.user_id == 'U47d7743cf2cae1d0c524c03cdca81775':
+            if event.source.user_id == DDID:
                 sendMsg = TextSendMessage(text='抱歉 你也是大哥\n葉子媚是個賢妻良母，兩百塊最聰明，戈巴契夫頭髮最長，海珊總統最不愛打仗')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('懺悔'):
-            if event.source.user_id == 'U96e561374b413379c8fddc22ed185e9e':
+            if event.source.user_id == markID:
                 sendMsg = TextSendMessage(text='才會真正得到尊嚴')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('認錯'):
-            if event.source.user_id == 'U96e561374b413379c8fddc22ed185e9e':
+            if event.source.user_id == markID:
                 sendMsg = TextSendMessage(text='事實不是說謊就能帶過')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('=='):
             sendMsg = TextSendMessage(text='你以為說==就沒事了嗎?')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('0.0'):
             sendMsg = TextSendMessage(text='靠杯喔')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('=_='):
             sendMsg = TextSendMessage(text='神經病')
-            line_bot_api.reply_message(event.reply_token, sendMsg)
+            line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('對不起'):
-            if event.source.user_id == 'Ua6e5cc1dc6fbeaca3f6db3f220c2782a':
+            if event.source.user_id == KKID:
                 sendMsg = ImageSendMessage(preview_image_url=line_bot_url+'/saySorry.jpg',
                                            original_content_url=line_bot_url+'/saySorry.jpg')
-                line_bot_api.reply_message(event.reply_token, sendMsg)
+                line_bot_api.reply_message(replyToken, sendMsg)
             break
 
 
