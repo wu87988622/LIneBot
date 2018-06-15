@@ -103,11 +103,15 @@ def get_google_image(text):
             imgID = imgs['id']
             script = bfsoup.find_all('script')[7].text
             jsonStr = script.replace('(function(){var data=', '').split(';for')[0]
+            jsonStr = jsonStr.split(']\n]')[0]
+            jsonStr = jsonStr[2:] + ']'
+            jsonStr = jsonStr.replace(']', '}').replace('[', '{').replace(':\",', '\":')
+            jsonStr = '{\"imgarray\":[' + jsonStr + ']}'
             imgJson = json.loads(jsonStr)
-            imgJson = imgJson[''][0]
-            imgJson = imgJson[''][0]
-            logging.info(imgJson)
-            img = imgJson[imgID]
+            for imgurl in imgJson['imgarray']:
+                if imgID in imgurl:
+                    img = imgurl[imgID]
+                    break
     logging.info(img);
     return img
 
