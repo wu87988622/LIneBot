@@ -114,6 +114,8 @@ def get_google_image(text):
                 if imgID in imgurl:
                     img = imgurl[imgID]
                     break
+            if img != '':
+                break
     logging.info(img)
     return img
 
