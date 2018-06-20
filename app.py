@@ -408,8 +408,8 @@ def handle_message(event):
             line_bot_api.reply_message(replyToken, sendMsg)
             break
         if case('= ='):
-            sendMsg = ImageSendMessage(preview_image_url=line_bot_url+'= =.jpg',
-                                       original_content_url=line_bot_url+'= =.jpg')
+            sendMsg = ImageSendMessage(preview_image_url=line_bot_url+'/= =.jpg',
+                                       original_content_url=line_bot_url+'/= =.jpg')
             line_bot_api.reply_message(replyToken, sendMsg)
             break
 
