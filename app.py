@@ -142,34 +142,6 @@ def post():
         return render_template('post.html')
 
 
-@app.route('/google', methods=['GET'])
-def google():
-    import requests
-
-    url = "https://www.google.com/search"
-
-    querystring = {"q": "site://www.bloomberg.com apple", "newwindow": "1",
-                   "tbs": "cdr:1,cd_min:06/01/2018,cd_max:06/02/2018", "source": "lnms", "tbm": "nws", "sa": "X",
-                   "ved": "0ahUKEwj76r6Kj8vbAhUBMpQKHa20CL0Q_AUICigB", "biw": "1440", "bih": "803"}
-
-    headers = {
-        'upgrade-insecure-requests': "1",
-        'user-agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36",
-        'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-        'accept-language': "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja;q=0.6,zh-CN;q=0.5",
-        'cache-control': "no-cache",
-        'postman-token': "7ebac7bc-289c-d7a3-f33a-9d927ceac257"
-    }
-
-    response = requests.request("GET", url, headers=headers, params=querystring)
-
-    googlebfs = BeautifulSoup(response.text, 'lxml')
-    alist = googlebfs.select("div > h3 > a")
-    for a in alist:
-        print(a.attrs['href'])
-    return 'ok'
-
-
 @app.route("/ex", methods=['POST'])
 def ex():
     logging.basicConfig(level=logging.INFO)
